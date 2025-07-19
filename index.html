@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Test - Ana Sayfa</title>
+    <title>Analytics Test - Ürünler</title>
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -22,10 +22,7 @@
         .nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
         .nav a { text-decoration: none; color: #0066cc; padding: 5px 10px; border: 1px solid #0066cc; }
         .nav a:hover { background: #0066cc; color: white; }
-        
-        .search-box { margin: 10px 0; }
-        .search-box input { width: 300px; padding: 8px; border: 1px solid #ccc; }
-        .search-box button { padding: 8px 15px; background: #0066cc; color: white; border: none; cursor: pointer; }
+        .nav a.active { background: #0066cc; color: white; }
         
         .breadcrumb { background: #f9f9f9; padding: 5px; margin: 10px 0; border-left: 3px solid #0066cc; }
         
@@ -39,36 +36,13 @@
         .item button { padding: 8px 12px; background: #00b894; color: white; border: none; cursor: pointer; margin: 2px; }
         .item button:hover { background: #00a085; }
         
-        .sidebar { width: 250px; float: right; background: #f0f0f0; padding: 10px; margin-left: 15px; }
-        .main-content { margin-right: 275px; }
-        
-        .filter-section { margin-bottom: 15px; }
-        .filter-section h3 { margin-bottom: 5px; }
-        .filter-section label { display: block; margin: 3px 0; }
-        .filter-section input { margin-right: 5px; }
-        
-        .cart-widget { background: #e74c3c; color: white; padding: 10px; margin-bottom: 10px; }
+        .cart-widget { background: #e74c3c; color: white; padding: 10px; margin-bottom: 10px; position: fixed; top: 10px; right: 10px; z-index: 1000; }
         .cart-count { font-weight: bold; font-size: 18px; }
-        
-        .stats { display: flex; gap: 15px; margin: 10px 0; flex-wrap: wrap; }
-        .stat-box { border: 1px solid #bbb; padding: 10px; min-width: 100px; background: #f8f8f8; }
-        .stat-box .number { font-size: 20px; font-weight: bold; color: #2d3436; }
-        .stat-box .label { font-size: 12px; color: #636e72; }
-        
-        .actions { margin: 10px 0; }
-        .actions button { padding: 8px 15px; margin: 3px; background: #6c5ce7; color: white; border: none; cursor: pointer; }
-        .actions button:hover { background: #5f3dc4; }
         
         .debug-panel { position: fixed; bottom: 10px; right: 10px; width: 300px; background: black; color: lime; font-family: monospace; font-size: 12px; z-index: 1000; }
         .debug-header { background: #333; padding: 5px; cursor: pointer; }
         .debug-content { max-height: 200px; overflow-y: auto; padding: 5px; display: none; }
         .debug-content.show { display: block; }
-        
-        .page-links { margin: 20px 0; }
-        .page-links a { display: inline-block; margin: 5px; padding: 8px 15px; background: #74b9ff; color: white; text-decoration: none; }
-        .page-links a:hover { background: #0984e3; }
-        
-        .clear { clear: both; }
     </style>
 </head>
 <body>
@@ -80,190 +54,83 @@
     <div class="container">
         <header class="header">
             <div class="nav">
-                <a href="#" onclick="navigate('home')">Ana Sayfa</a>
-                <a href="#" onclick="navigate('products')">Ürünler</a>
-                <a href="#" onclick="navigate('categories')">Kategoriler</a>
-                <a href="#" onclick="navigate('about')">Hakkında</a>
-                <a href="#" onclick="navigate('contact')">İletişim</a>
-                <a href="#" onclick="navigate('blog')">Blog</a>
-                <a href="#" onclick="navigate('support')">Destek</a>
-                <a href="#" onclick="showLogin()">Giriş</a>
-                <a href="#" onclick="showRegister()">Kayıt</a>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="products.html" class="active">Ürünler</a>
+                <a href="categories.html">Kategoriler</a>
+                <a href="about.html">Hakkında</a>
+                <a href="contact.html">İletişim</a>
+                <a href="blog.html">Blog</a>
+                <a href="support.html">Destek</a>
             </div>
             
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="searchProducts(event)">
-                <button onclick="performSearch()">Ara</button>
-                <button onclick="clearSearch()">Temizle</button>
-            </div>
-            
-            <div class="breadcrumb" id="breadcrumb">Ana Sayfa</div>
+            <div class="breadcrumb">Ana Sayfa > Ürünler</div>
         </header>
 
-        <div class="sidebar">
-            <div class="cart-widget">
-                <div class="cart-count">Sepet: <span id="cartCount">0</span></div>
-                <div>Toplam: <span id="cartTotal">₺0</span></div>
-                <button onclick="viewCart()" style="background: white; color: #e74c3c; margin-top: 5px;">Sepeti Görüntüle</button>
-            </div>
-
-            <div class="filter-section">
-                <h3>Kategoriler</h3>
-                <label><input type="checkbox" onclick="filterByCategory('telefon')"> Telefon</label>
-                <label><input type="checkbox" onclick="filterByCategory('bilgisayar')"> Bilgisayar</label>
-                <label><input type="checkbox" onclick="filterByCategory('aksesuar')"> Aksesuar</label>
-                <label><input type="checkbox" onclick="filterByCategory('giyilebilir')"> Giyilebilir</label>
-            </div>
-
-            <div class="filter-section">
-                <h3>Fiyat Aralığı</h3>
-                <label><input type="checkbox" onclick="filterByPrice('0-10000')"> 0-10.000₺</label>
-                <label><input type="checkbox" onclick="filterByPrice('10000-50000')"> 10.000-50.000₺</label>
-                <label><input type="checkbox" onclick="filterByPrice('50000+')"> 50.000₺+</label>
-            </div>
-
-            <div class="filter-section">
-                <h3>Marka</h3>
-                <label><input type="checkbox" onclick="filterByBrand('apple')"> Apple</label>
-                <label><input type="checkbox" onclick="filterByBrand('samsung')"> Samsung</label>
-                <label><input type="checkbox" onclick="filterByBrand('xiaomi')"> Xiaomi</label>
-            </div>
-
-            <div class="actions">
-                <button onclick="sortProducts('price-asc')">Fiyat↑</button>
-                <button onclick="sortProducts('price-desc')">Fiyat↓</button>
-                <button onclick="sortProducts('name')">İsim</button>
-                <button onclick="sortProducts('rating')">Puan</button>
-            </div>
+        <div class="cart-widget">
+            <div class="cart-count">Sepet: <span id="cartCount">0</span></div>
+            <div>Toplam: <span id="cartTotal">₺0</span></div>
         </div>
 
-        <main class="main-content">
-            <div class="stats">
-                <div class="stat-box">
-                    <div class="number" id="totalProducts">24</div>
-                    <div class="label">Toplam Ürün</div>
-                </div>
-                <div class="stat-box">
-                    <div class="number" id="activeUsers">127</div>
-                    <div class="label">Aktif Kullanıcı</div>
-                </div>
-                <div class="stat-box">
-                    <div class="number" id="todaySales">₺45.6K</div>
-                    <div class="label">Günlük Satış</div>
-                </div>
-                <div class="stat-box">
-                    <div class="number" id="pageViews">1.2K</div>
-                    <div class="label">Sayfa Görüntüleme</div>
-                </div>
-            </div>
-
+        <main>
             <section class="section">
-                <h2>Öne Çıkan Ürünler</h2>
-                <div class="grid" id="featuredProducts">
+                <h2>Tüm Ürünler</h2>
+                <div class="grid" id="allProducts">
                     <div class="item" data-category="telefon" data-price="45999" data-brand="apple">
                         <h3>iPhone 15 Pro</h3>
                         <div class="price">₺45,999</div>
                         <div>Stok: 15 adet</div>
                         <div>Puan: ⭐⭐⭐⭐⭐ (4.8)</div>
                         <button onclick="addToCart('iphone15pro', 'iPhone 15 Pro', 45999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('iphone15pro')">Favoriye Ekle</button>
                         <button onclick="viewProduct('iphone15pro')">Detay</button>
-                        <button onclick="compareProduct('iphone15pro')">Karşılaştır</button>
                     </div>
+                    
                     <div class="item" data-category="bilgisayar" data-price="89999" data-brand="apple">
                         <h3>MacBook Pro M3</h3>
                         <div class="price">₺89,999</div>
                         <div>Stok: 8 adet</div>
                         <div>Puan: ⭐⭐⭐⭐⭐ (4.9)</div>
                         <button onclick="addToCart('macbookprom3', 'MacBook Pro M3', 89999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('macbookprom3')">Favoriye Ekle</button>
                         <button onclick="viewProduct('macbookprom3')">Detay</button>
-                        <button onclick="compareProduct('macbookprom3')">Karşılaştır</button>
                     </div>
-                    <div class="item" data-category="aksesuar" data-price="8999" data-brand="apple">
-                        <h3>AirPods Pro</h3>
-                        <div class="price">₺8,999</div>
-                        <div>Stok: 25 adet</div>
-                        <div>Puan: ⭐⭐⭐⭐⭐ (4.7)</div>
-                        <button onclick="addToCart('airpodspro', 'AirPods Pro', 8999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('airpodspro')">Favoriye Ekle</button>
-                        <button onclick="viewProduct('airpodspro')">Detay</button>
-                        <button onclick="compareProduct('airpodspro')">Karşılaştır</button>
-                    </div>
-                    <div class="item" data-category="giyilebilir" data-price="15999" data-brand="apple">
-                        <h3>Apple Watch Series 9</h3>
-                        <div class="price">₺15,999</div>
-                        <div>Stok: 12 adet</div>
-                        <div>Puan: ⭐⭐⭐⭐ (4.6)</div>
-                        <button onclick="addToCart('applewatchs9', 'Apple Watch Series 9', 15999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('applewatchs9')">Favoriye Ekle</button>
-                        <button onclick="viewProduct('applewatchs9')">Detay</button>
-                        <button onclick="compareProduct('applewatchs9')">Karşılaştır</button>
-                    </div>
+                    
                     <div class="item" data-category="telefon" data-price="35999" data-brand="samsung">
                         <h3>Samsung Galaxy S24</h3>
                         <div class="price">₺35,999</div>
                         <div>Stok: 20 adet</div>
                         <div>Puan: ⭐⭐⭐⭐ (4.5)</div>
                         <button onclick="addToCart('galaxys24', 'Samsung Galaxy S24', 35999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('galaxys24')">Favoriye Ekle</button>
                         <button onclick="viewProduct('galaxys24')">Detay</button>
-                        <button onclick="compareProduct('galaxys24')">Karşılaştır</button>
                     </div>
+                    
                     <div class="item" data-category="telefon" data-price="12999" data-brand="xiaomi">
                         <h3>Xiaomi Redmi Note 13</h3>
                         <div class="price">₺12,999</div>
                         <div>Stok: 35 adet</div>
                         <div>Puan: ⭐⭐⭐⭐ (4.3)</div>
                         <button onclick="addToCart('redminote13', 'Xiaomi Redmi Note 13', 12999)">Sepete Ekle</button>
-                        <button onclick="addToWishlist('redminote13')">Favoriye Ekle</button>
                         <button onclick="viewProduct('redminote13')">Detay</button>
-                        <button onclick="compareProduct('redminote13')">Karşılaştır</button>
+                    </div>
+                    
+                    <div class="item" data-category="aksesuar" data-price="8999" data-brand="apple">
+                        <h3>AirPods Pro</h3>
+                        <div class="price">₺8,999</div>
+                        <div>Stok: 25 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐⭐ (4.7)</div>
+                        <button onclick="addToCart('airpodspro', 'AirPods Pro', 8999)">Sepete Ekle</button>
+                        <button onclick="viewProduct('airpodspro')">Detay</button>
+                    </div>
+                    
+                    <div class="item" data-category="giyilebilir" data-price="15999" data-brand="apple">
+                        <h3>Apple Watch Series 9</h3>
+                        <div class="price">₺15,999</div>
+                        <div>Stok: 12 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐ (4.6)</div>
+                        <button onclick="addToCart('applewatchs9', 'Apple Watch Series 9', 15999)">Sepete Ekle</button>
+                        <button onclick="viewProduct('applewatchs9')">Detay</button>
                     </div>
                 </div>
             </section>
-
-            <section class="section">
-                <h2>Popüler Kategoriler</h2>
-                <div class="actions">
-                    <button onclick="viewCategory('telefon')">Telefon (156 ürün)</button>
-                    <button onclick="viewCategory('bilgisayar')">Bilgisayar (89 ürün)</button>
-                    <button onclick="viewCategory('aksesuar')">Aksesuar (234 ürün)</button>
-                    <button onclick="viewCategory('giyilebilir')">Giyilebilir (67 ürün)</button>
-                    <button onclick="viewCategory('tablet')">Tablet (45 ürün)</button>
-                    <button onclick="viewCategory('oyun')">Oyun (123 ürün)</button>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>Hızlı İşlemler</h2>
-                <div class="actions">
-                    <button onclick="downloadCatalog()">Katalog İndir</button>
-                    <button onclick="subscribeNewsletter()">Bültene Abone Ol</button>
-                    <button onclick="requestSupport()">Destek Talep Et</button>
-                    <button onclick="trackOrder()">Sipariş Takip</button>
-                    <button onclick="returnProduct()">İade Başvuru</button>
-                    <button onclick="writeReview()">Yorum Yaz</button>
-                    <button onclick="shareOnSocial('facebook')">Facebook Paylaş</button>
-                    <button onclick="shareOnSocial('twitter')">Twitter Paylaş</button>
-                    <button onclick="shareOnSocial('whatsapp')">WhatsApp Paylaş</button>
-                </div>
-            </section>
-
-            <div class="page-links">
-                <strong>Diğer Sayfalar:</strong>
-                <a href="#" onclick="navigate('checkout')">Ödeme Sayfası</a>
-                <a href="#" onclick="navigate('account')">Hesabım</a>
-                <a href="#" onclick="navigate('wishlist')">Favorilerim</a>
-                <a href="#" onclick="navigate('compare')">Karşılaştır</a>
-                <a href="#" onclick="navigate('reviews')">Yorumlar</a>
-                <a href="#" onclick="navigate('faq')">SSS</a>
-                <a href="#" onclick="navigate('privacy')">Gizlilik</a>
-                <a href="#" onclick="navigate('terms')">Kullanım Şartları</a>
-            </div>
         </main>
-
-        <div class="clear"></div>
     </div>
 
     <!-- Debug Panel -->
@@ -278,12 +145,8 @@
 
     <script>
         // Global değişkenler
-        let cart = {};
-        let wishlist = [];
-        let compareList = [];
-        let currentPage = 'home';
-        let searchTerm = '';
-        let activeFilters = { category: [], price: [], brand: [] };
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let currentPage = 'products';
         
         // DataLayer'ı initialize et
         window.dataLayer = window.dataLayer || [];
@@ -301,31 +164,21 @@
             console.log('Analytics Event:', eventName, eventData);
         }
         
-        // Sayfa navigasyon
-        function navigate(page) {
-            currentPage = page;
-            updateBreadcrumb(page);
-            
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
             const eventData = {
                 event: 'page_view',
-                page_title: `Analytics Test - ${page}`,
-                page_location: window.location.href + '#' + page,
-                page_path: '/' + page,
-                previous_page: currentPage
+                page_title: 'Analytics Test - Ürünler',
+                page_location: window.location.href,
+                page_path: '/products.html'
             };
             
             dataLayer.push(eventData);
             gtag('event', 'page_view', eventData);
             logEvent('page_view', eventData);
             
-            // Simüle sayfa içeriği değişimi
-            document.title = `Analytics Test - ${page.charAt(0).toUpperCase() + page.slice(1)}`;
-        }
-        
-        function updateBreadcrumb(page) {
-            const breadcrumb = document.getElementById('breadcrumb');
-            breadcrumb.textContent = `Ana Sayfa > ${page.charAt(0).toUpperCase() + page.slice(1)}`;
-        }
+            updateCartDisplay();
+        });
         
         // Sepet işlemleri
         function addToCart(itemId, itemName, price) {
@@ -333,6 +186,9 @@
                 cart[itemId] = { name: itemName, price: price, quantity: 0 };
             }
             cart[itemId].quantity++;
+            
+            // Local storage'a kaydet
+            localStorage.setItem('cart', JSON.stringify(cart));
             
             const eventData = {
                 event: 'add_to_cart',
@@ -370,114 +226,6 @@
             document.getElementById('cartTotal').textContent = `₺${total.toLocaleString()}`;
         }
         
-        function viewCart() {
-            navigate('cart');
-            
-            const eventData = {
-                event: 'view_cart',
-                currency: 'TRY',
-                value: Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                items: Object.entries(cart).map(([id, item]) => ({
-                    item_id: id,
-                    item_name: item.name,
-                    currency: 'TRY',
-                    price: item.price,
-                    quantity: item.quantity
-                }))
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'view_cart', eventData);
-            logEvent('view_cart', eventData);
-        }
-        
-        // Arama işlemleri
-        function searchProducts(event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        }
-        
-        function performSearch() {
-            searchTerm = document.getElementById('searchInput').value;
-            
-            const eventData = {
-                event: 'search',
-                search_term: searchTerm,
-                page_location: window.location.href,
-                results_count: Math.floor(Math.random() * 50) + 1
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'search', eventData);
-            logEvent('search', eventData);
-            
-            showNotification(`"${searchTerm}" için arama yapıldı`);
-        }
-        
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            searchTerm = '';
-            
-            logEvent('search_cleared', { action: 'clear_search' });
-        }
-        
-        // Filtreleme işlemleri
-        function filterByCategory(category) {
-            const index = activeFilters.category.indexOf(category);
-            if (index > -1) {
-                activeFilters.category.splice(index, 1);
-            } else {
-                activeFilters.category.push(category);
-            }
-            
-            const eventData = {
-                event: 'filter_applied',
-                filter_type: 'category',
-                filter_value: category,
-                active_filters: activeFilters
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'filter_applied', eventData);
-            logEvent('filter_applied', eventData);
-        }
-        
-        function filterByPrice(range) {
-            const eventData = {
-                event: 'filter_applied',
-                filter_type: 'price',
-                filter_value: range
-            };
-            
-            dataLayer.push(eventData);
-            logEvent('filter_applied', eventData);
-        }
-        
-        function filterByBrand(brand) {
-            const eventData = {
-                event: 'filter_applied',
-                filter_type: 'brand',
-                filter_value: brand
-            };
-            
-            dataLayer.push(eventData);
-            logEvent('filter_applied', eventData);
-        }
-        
-        // Sıralama
-        function sortProducts(sortType) {
-            const eventData = {
-                event: 'sort_applied',
-                sort_type: sortType,
-                page: currentPage
-            };
-            
-            dataLayer.push(eventData);
-            logEvent('sort_applied', eventData);
-        }
-        
-        // Ürün işlemleri
         function viewProduct(productId) {
             const eventData = {
                 event: 'view_item',
@@ -495,104 +243,8 @@
             dataLayer.push(eventData);
             gtag('event', 'view_item', eventData);
             logEvent('view_item', eventData);
-        }
-        
-        function addToWishlist(productId) {
-            if (!wishlist.includes(productId)) {
-                wishlist.push(productId);
-                
-                const eventData = {
-                    event: 'add_to_wishlist',
-                    currency: 'TRY',
-                    value: getProductPrice(productId),
-                    items: [{
-                        item_id: productId,
-                        item_name: getProductName(productId),
-                        currency: 'TRY',
-                        price: getProductPrice(productId),
-                        quantity: 1
-                    }]
-                };
-                
-                dataLayer.push(eventData);
-                gtag('event', 'add_to_wishlist', eventData);
-                logEvent('add_to_wishlist', eventData);
-                
-                showNotification('Favorilere eklendi!');
-            }
-        }
-        
-        function compareProduct(productId) {
-            if (!compareList.includes(productId)) {
-                compareList.push(productId);
-                
-                logEvent('add_to_compare', {
-                    event: 'add_to_compare',
-                    product_id: productId,
-                    compare_list_count: compareList.length
-                });
-                
-                showNotification('Karşılaştırma listesine eklendi!');
-            }
-        }
-        
-        // Kategori görüntüleme
-        function viewCategory(category) {
-            const eventData = {
-                event: 'view_item_list',
-                item_list_name: category,
-                items: getItemsByCategory(category)
-            };
             
-            dataLayer.push(eventData);
-            gtag('event', 'view_item_list', eventData);
-            logEvent('view_item_list', eventData);
-            
-            navigate('category-' + category);
-        }
-        
-        // Sosyal medya paylaşım
-        function shareOnSocial(platform) {
-            const eventData = {
-                event: 'share',
-                method: platform,
-                content_type: 'product',
-                item_id: 'homepage'
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'share', eventData);
-            logEvent('share', eventData);
-            
-            showNotification(`${platform} üzerinde paylaşıldı!`);
-        }
-        
-        // Diğer işlemler
-        function downloadCatalog() {
-            logEvent('file_download', {
-                event: 'file_download',
-                file_name: 'product_catalog.pdf',
-                file_extension: 'pdf',
-                link_url: '/downloads/catalog.pdf'
-            });
-            showNotification('Katalog indiriliyor...');
-        }
-        
-        function subscribeNewsletter() {
-            logEvent('newsletter_signup', {
-                event: 'newsletter_signup',
-                method: 'website_form'
-            });
-            showNotification('Bültene abone oldunuz!');
-        }
-        
-        function requestSupport() {
-            logEvent('support_request', {
-                event: 'support_request',
-                support_type: 'general',
-                page: currentPage
-            });
-            navigate('support');
+            showNotification(`${getProductName(productId)} detayları görüntüleniyor...`);
         }
         
         // Yardımcı fonksiyonlar
@@ -623,4 +275,37 @@
             return products[productId] || productId;
         }
         
-        function getProductPrice(product
+        function getProductPrice(productId) {
+            const prices = {
+                'iphone15pro': 45999,
+                'macbookprom3': 89999,
+                'airpodspro': 8999,
+                'applewatchs9': 15999,
+                'galaxys24': 35999,
+                'redminote13': 12999
+            };
+            return prices[productId] || 0;
+        }
+        
+        function showNotification(message) {
+            // Basit bildirim gösterimi
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 50px; right: 20px; background: #00b894; color: white; 
+                padding: 10px 20px; border-radius: 5px; z-index: 9999;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+        
+        function toggleDebug() {
+            const content = document.getElementById('debugContent');
+            content.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
