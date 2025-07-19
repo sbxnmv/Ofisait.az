@@ -3,342 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechShop - Analytics Test Ortamı</title>
+    <title>Analytics Test - Ana Sayfa</title>
     
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
+    <!-- End Google Tag Manager -->
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.4; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+        .header { background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; }
+        .nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: #0066cc; padding: 5px 10px; border: 1px solid #0066cc; }
+        .nav a:hover { background: #0066cc; color: white; }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .search-box { margin: 10px 0; }
+        .search-box input { width: 300px; padding: 8px; border: 1px solid #ccc; }
+        .search-box button { padding: 8px 15px; background: #0066cc; color: white; border: none; cursor: pointer; }
         
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
+        .breadcrumb { background: #f9f9f9; padding: 5px; margin: 10px 0; border-left: 3px solid #0066cc; }
         
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .section { border: 1px solid #ddd; margin: 10px 0; padding: 15px; background: #fafafa; }
+        .section h2 { margin-bottom: 10px; color: #333; }
         
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .item { border: 1px solid #ccc; padding: 10px; background: white; }
+        .item h3 { margin-bottom: 5px; }
+        .item .price { font-weight: bold; color: #d63031; margin: 5px 0; }
+        .item button { padding: 8px 12px; background: #00b894; color: white; border: none; cursor: pointer; margin: 2px; }
+        .item button:hover { background: #00a085; }
         
-        .cart-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .sidebar { width: 250px; float: right; background: #f0f0f0; padding: 10px; margin-left: 15px; }
+        .main-content { margin-right: 275px; }
         
-        .cart-count {
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+        .filter-section { margin-bottom: 15px; }
+        .filter-section h3 { margin-bottom: 5px; }
+        .filter-section label { display: block; margin: 3px 0; }
+        .filter-section input { margin-right: 5px; }
         
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+        .cart-widget { background: #e74c3c; color: white; padding: 10px; margin-bottom: 10px; }
+        .cart-count { font-weight: bold; font-size: 18px; }
         
-        .product-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+        .stats { display: flex; gap: 15px; margin: 10px 0; flex-wrap: wrap; }
+        .stat-box { border: 1px solid #bbb; padding: 10px; min-width: 100px; background: #f8f8f8; }
+        .stat-box .number { font-size: 20px; font-weight: bold; color: #2d3436; }
+        .stat-box .label { font-size: 12px; color: #636e72; }
         
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
+        .actions { margin: 10px 0; }
+        .actions button { padding: 8px 15px; margin: 3px; background: #6c5ce7; color: white; border: none; cursor: pointer; }
+        .actions button:hover { background: #5f3dc4; }
         
-        .product-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-        }
+        .debug-panel { position: fixed; bottom: 10px; right: 10px; width: 300px; background: black; color: lime; font-family: monospace; font-size: 12px; z-index: 1000; }
+        .debug-header { background: #333; padding: 5px; cursor: pointer; }
+        .debug-content { max-height: 200px; overflow-y: auto; padding: 5px; display: none; }
+        .debug-content.show { display: block; }
         
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
+        .page-links { margin: 20px 0; }
+        .page-links a { display: inline-block; margin: 5px; padding: 8px 15px; background: #74b9ff; color: white; text-decoration: none; }
+        .page-links a:hover { background: #0984e3; }
         
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-        
-        .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cart {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .cart-total {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 1rem 0;
-            color: #333;
-        }
-        
-        .analytics-debug {
-            background: rgba(0, 0, 0, 0.8);
-            color: #00ff00;
-            padding: 1rem;
-            border-radius: 10px;
-            font-family: monospace;
-            margin-top: 2rem;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .debug-toggle {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            cursor: pointer;
-        }
-        
-        .event-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 5px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .filter-btn.active {
-            background: #667eea;
-            color: white;
-        }
+        .clear { clear: both; }
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="container">
         <header class="header">
-            <nav class="nav">
-                <div class="logo">TechShop</div>
-                <div class="cart-info">
-                    <span>Sepet:</span>
-                    <div class="cart-count" id="cartCount">0</div>
-                    <span id="cartTotal">₺0</span>
-                </div>
-            </nav>
+            <div class="nav">
+                <a href="#" onclick="navigate('home')">Ana Sayfa</a>
+                <a href="#" onclick="navigate('products')">Ürünler</a>
+                <a href="#" onclick="navigate('categories')">Kategoriler</a>
+                <a href="#" onclick="navigate('about')">Hakkında</a>
+                <a href="#" onclick="navigate('contact')">İletişim</a>
+                <a href="#" onclick="navigate('blog')">Blog</a>
+                <a href="#" onclick="navigate('support')">Destek</a>
+                <a href="#" onclick="showLogin()">Giriş</a>
+                <a href="#" onclick="showRegister()">Kayıt</a>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Ürün ara..." onkeyup="searchProducts(event)">
+                <button onclick="performSearch()">Ara</button>
+                <button onclick="clearSearch()">Temizle</button>
+            </div>
+            
+            <div class="breadcrumb" id="breadcrumb">Ana Sayfa</div>
         </header>
 
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image">📱</div>
-                <div class="product-title">iPhone 15 Pro</div>
-                <div class="product-price">₺45,999</div>
-                <button class="btn" onclick="addToCart('iphone15pro', 'iPhone 15 Pro', 45999)">Sepete Ekle</button>
+        <div class="sidebar">
+            <div class="cart-widget">
+                <div class="cart-count">Sepet: <span id="cartCount">0</span></div>
+                <div>Toplam: <span id="cartTotal">₺0</span></div>
+                <button onclick="viewCart()" style="background: white; color: #e74c3c; margin-top: 5px;">Sepeti Görüntüle</button>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">💻</div>
-                <div class="product-title">MacBook Pro M3</div>
-                <div class="product-price">₺89,999</div>
-                <button class="btn" onclick="addToCart('macbookprom3', 'MacBook Pro M3', 89999)">Sepete Ekle</button>
+            <div class="filter-section">
+                <h3>Kategoriler</h3>
+                <label><input type="checkbox" onclick="filterByCategory('telefon')"> Telefon</label>
+                <label><input type="checkbox" onclick="filterByCategory('bilgisayar')"> Bilgisayar</label>
+                <label><input type="checkbox" onclick="filterByCategory('aksesuar')"> Aksesuar</label>
+                <label><input type="checkbox" onclick="filterByCategory('giyilebilir')"> Giyilebilir</label>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">🎧</div>
-                <div class="product-title">AirPods Pro</div>
-                <div class="product-price">₺8,999</div>
-                <button class="btn" onclick="addToCart('airpodspro', 'AirPods Pro', 8999)">Sepete Ekle</button>
+            <div class="filter-section">
+                <h3>Fiyat Aralığı</h3>
+                <label><input type="checkbox" onclick="filterByPrice('0-10000')"> 0-10.000₺</label>
+                <label><input type="checkbox" onclick="filterByPrice('10000-50000')"> 10.000-50.000₺</label>
+                <label><input type="checkbox" onclick="filterByPrice('50000+')"> 50.000₺+</label>
             </div>
 
-            <div class="product-card">
-                <div class="product-image">⌚</div>
-                <div class="product-title">Apple Watch Series 9</div>
-                <div class="product-price">₺15,999</div>
-                <button class="btn" onclick="addToCart('applewatchs9', 'Apple Watch Series 9', 15999)">Sepete Ekle</button>
+            <div class="filter-section">
+                <h3>Marka</h3>
+                <label><input type="checkbox" onclick="filterByBrand('apple')"> Apple</label>
+                <label><input type="checkbox" onclick="filterByBrand('samsung')"> Samsung</label>
+                <label><input type="checkbox" onclick="filterByBrand('xiaomi')"> Xiaomi</label>
+            </div>
+
+            <div class="actions">
+                <button onclick="sortProducts('price-asc')">Fiyat↑</button>
+                <button onclick="sortProducts('price-desc')">Fiyat↓</button>
+                <button onclick="sortProducts('name')">İsim</button>
+                <button onclick="sortProducts('rating')">Puan</button>
             </div>
         </div>
 
-        <div class="cart">
-            <h2>Sepetim</h2>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="totalAmount">Toplam: ₺0</div>
-            <button class="btn" onclick="checkout()" id="checkoutBtn" style="display:none;">Satın Al</button>
-        </div>
-
-        <!-- Analytics Debug Panel -->
-        <button class="debug-toggle" onclick="toggleDebug()">Analytics Debug Panel</button>
-        
-        <div id="debugPanel" style="display:none;">
-            <div class="event-filters">
-                <button class="filter-btn active" onclick="filterEvents('all')">Tümü</button>
-                <button class="filter-btn" onclick="filterEvents('page_view')">Sayfa Görüntüleme</button>
-                <button class="filter-btn" onclick="filterEvents('add_to_cart')">Sepete Ekle</button>
-                <button class="filter-btn" onclick="filterEvents('purchase')">Satın Alma</button>
-                <button class="filter-btn" onclick="filterEvents('custom')">Özel Eventler</button>
+        <main class="main-content">
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="number" id="totalProducts">24</div>
+                    <div class="label">Toplam Ürün</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="activeUsers">127</div>
+                    <div class="label">Aktif Kullanıcı</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="todaySales">₺45.6K</div>
+                    <div class="label">Günlük Satış</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="pageViews">1.2K</div>
+                    <div class="label">Sayfa Görüntüleme</div>
+                </div>
             </div>
-            <div class="analytics-debug" id="debugLog"></div>
+
+            <section class="section">
+                <h2>Öne Çıkan Ürünler</h2>
+                <div class="grid" id="featuredProducts">
+                    <div class="item" data-category="telefon" data-price="45999" data-brand="apple">
+                        <h3>iPhone 15 Pro</h3>
+                        <div class="price">₺45,999</div>
+                        <div>Stok: 15 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐⭐ (4.8)</div>
+                        <button onclick="addToCart('iphone15pro', 'iPhone 15 Pro', 45999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('iphone15pro')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('iphone15pro')">Detay</button>
+                        <button onclick="compareProduct('iphone15pro')">Karşılaştır</button>
+                    </div>
+                    <div class="item" data-category="bilgisayar" data-price="89999" data-brand="apple">
+                        <h3>MacBook Pro M3</h3>
+                        <div class="price">₺89,999</div>
+                        <div>Stok: 8 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐⭐ (4.9)</div>
+                        <button onclick="addToCart('macbookprom3', 'MacBook Pro M3', 89999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('macbookprom3')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('macbookprom3')">Detay</button>
+                        <button onclick="compareProduct('macbookprom3')">Karşılaştır</button>
+                    </div>
+                    <div class="item" data-category="aksesuar" data-price="8999" data-brand="apple">
+                        <h3>AirPods Pro</h3>
+                        <div class="price">₺8,999</div>
+                        <div>Stok: 25 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐⭐ (4.7)</div>
+                        <button onclick="addToCart('airpodspro', 'AirPods Pro', 8999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('airpodspro')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('airpodspro')">Detay</button>
+                        <button onclick="compareProduct('airpodspro')">Karşılaştır</button>
+                    </div>
+                    <div class="item" data-category="giyilebilir" data-price="15999" data-brand="apple">
+                        <h3>Apple Watch Series 9</h3>
+                        <div class="price">₺15,999</div>
+                        <div>Stok: 12 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐ (4.6)</div>
+                        <button onclick="addToCart('applewatchs9', 'Apple Watch Series 9', 15999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('applewatchs9')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('applewatchs9')">Detay</button>
+                        <button onclick="compareProduct('applewatchs9')">Karşılaştır</button>
+                    </div>
+                    <div class="item" data-category="telefon" data-price="35999" data-brand="samsung">
+                        <h3>Samsung Galaxy S24</h3>
+                        <div class="price">₺35,999</div>
+                        <div>Stok: 20 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐ (4.5)</div>
+                        <button onclick="addToCart('galaxys24', 'Samsung Galaxy S24', 35999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('galaxys24')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('galaxys24')">Detay</button>
+                        <button onclick="compareProduct('galaxys24')">Karşılaştır</button>
+                    </div>
+                    <div class="item" data-category="telefon" data-price="12999" data-brand="xiaomi">
+                        <h3>Xiaomi Redmi Note 13</h3>
+                        <div class="price">₺12,999</div>
+                        <div>Stok: 35 adet</div>
+                        <div>Puan: ⭐⭐⭐⭐ (4.3)</div>
+                        <button onclick="addToCart('redminote13', 'Xiaomi Redmi Note 13', 12999)">Sepete Ekle</button>
+                        <button onclick="addToWishlist('redminote13')">Favoriye Ekle</button>
+                        <button onclick="viewProduct('redminote13')">Detay</button>
+                        <button onclick="compareProduct('redminote13')">Karşılaştır</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Popüler Kategoriler</h2>
+                <div class="actions">
+                    <button onclick="viewCategory('telefon')">Telefon (156 ürün)</button>
+                    <button onclick="viewCategory('bilgisayar')">Bilgisayar (89 ürün)</button>
+                    <button onclick="viewCategory('aksesuar')">Aksesuar (234 ürün)</button>
+                    <button onclick="viewCategory('giyilebilir')">Giyilebilir (67 ürün)</button>
+                    <button onclick="viewCategory('tablet')">Tablet (45 ürün)</button>
+                    <button onclick="viewCategory('oyun')">Oyun (123 ürün)</button>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Hızlı İşlemler</h2>
+                <div class="actions">
+                    <button onclick="downloadCatalog()">Katalog İndir</button>
+                    <button onclick="subscribeNewsletter()">Bültene Abone Ol</button>
+                    <button onclick="requestSupport()">Destek Talep Et</button>
+                    <button onclick="trackOrder()">Sipariş Takip</button>
+                    <button onclick="returnProduct()">İade Başvuru</button>
+                    <button onclick="writeReview()">Yorum Yaz</button>
+                    <button onclick="shareOnSocial('facebook')">Facebook Paylaş</button>
+                    <button onclick="shareOnSocial('twitter')">Twitter Paylaş</button>
+                    <button onclick="shareOnSocial('whatsapp')">WhatsApp Paylaş</button>
+                </div>
+            </section>
+
+            <div class="page-links">
+                <strong>Diğer Sayfalar:</strong>
+                <a href="#" onclick="navigate('checkout')">Ödeme Sayfası</a>
+                <a href="#" onclick="navigate('account')">Hesabım</a>
+                <a href="#" onclick="navigate('wishlist')">Favorilerim</a>
+                <a href="#" onclick="navigate('compare')">Karşılaştır</a>
+                <a href="#" onclick="navigate('reviews')">Yorumlar</a>
+                <a href="#" onclick="navigate('faq')">SSS</a>
+                <a href="#" onclick="navigate('privacy')">Gizlilik</a>
+                <a href="#" onclick="navigate('terms')">Kullanım Şartları</a>
+            </div>
+        </main>
+
+        <div class="clear"></div>
+    </div>
+
+    <!-- Debug Panel -->
+    <div class="debug-panel">
+        <div class="debug-header" onclick="toggleDebug()">
+            📊 Analytics Debug [Tıkla]
+        </div>
+        <div class="debug-content" id="debugContent">
+            <div id="debugLog"></div>
         </div>
     </div>
 
     <script>
         // Global değişkenler
         let cart = {};
-        let debugMode = false;
-        let eventFilter = 'all';
+        let wishlist = [];
+        let compareList = [];
+        let currentPage = 'home';
+        let searchTerm = '';
+        let activeFilters = { category: [], price: [], brand: [] };
         
         // DataLayer'ı initialize et
         window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
         
-        // Debug log fonksiyonu
+        // Debug fonksiyonu
         function logEvent(eventName, eventData) {
             const timestamp = new Date().toLocaleTimeString();
             const logEntry = `[${timestamp}] ${eventName}: ${JSON.stringify(eventData, null, 2)}`;
             
-            if (debugMode) {
-                const debugLog = document.getElementById('debugLog');
-                const shouldShow = eventFilter === 'all' || 
-                                 eventName.includes(eventFilter) || 
-                                 (eventFilter === 'custom' && !['page_view', 'add_to_cart', 'purchase'].some(e => eventName.includes(e)));
-                
-                if (shouldShow) {
-                    debugLog.innerHTML += logEntry + '\n\n';
-                    debugLog.scrollTop = debugLog.scrollHeight;
-                }
-            }
+            const debugLog = document.getElementById('debugLog');
+            debugLog.innerHTML += logEntry + '\n\n';
+            debugLog.scrollTop = debugLog.scrollHeight;
+            
+            console.log('Analytics Event:', eventName, eventData);
         }
         
-        // Sayfa yükleme eventi
-        function trackPageView() {
+        // Sayfa navigasyon
+        function navigate(page) {
+            currentPage = page;
+            updateBreadcrumb(page);
+            
             const eventData = {
                 event: 'page_view',
-                page_title: document.title,
-                page_location: window.location.href,
-                page_path: window.location.pathname
+                page_title: `Analytics Test - ${page}`,
+                page_location: window.location.href + '#' + page,
+                page_path: '/' + page,
+                previous_page: currentPage
             };
             
-            // DataLayer'a gönder
             dataLayer.push(eventData);
-            
-            // GA4'e direkt gönder
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                page_path: window.location.pathname
-            });
-            
+            gtag('event', 'page_view', eventData);
             logEvent('page_view', eventData);
+            
+            // Simüle sayfa içeriği değişimi
+            document.title = `Analytics Test - ${page.charAt(0).toUpperCase() + page.slice(1)}`;
         }
         
-        // Sepete ekleme fonksiyonu
+        function updateBreadcrumb(page) {
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.textContent = `Ana Sayfa > ${page.charAt(0).toUpperCase() + page.slice(1)}`;
+        }
+        
+        // Sepet işlemleri
         function addToCart(itemId, itemName, price) {
             if (!cart[itemId]) {
-                cart[itemId] = {
-                    name: itemName,
-                    price: price,
-                    quantity: 0
-                };
+                cart[itemId] = { name: itemName, price: price, quantity: 0 };
             }
             cart[itemId].quantity++;
             
-            // E-commerce tracking
             const eventData = {
                 event: 'add_to_cart',
                 currency: 'TRY',
@@ -348,222 +343,284 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     item_name: itemName,
                     currency: 'TRY',
                     price: price,
-                    quantity: 1
+                    quantity: 1,
+                    item_category: getProductCategory(itemName),
+                    item_brand: getProductBrand(itemName)
                 }]
             };
             
-            // DataLayer'a gönder
             dataLayer.push(eventData);
-            
-            // GA4'e gönder
-            gtag('event', 'add_to_cart', {
-                currency: 'TRY',
-                value: price,
-                items: [{
-                    item_id: itemId,
-                    item_name: itemName,
-                    currency: 'TRY',
-                    price: price,
-                    quantity: 1
-                }]
-            });
-            
+            gtag('event', 'add_to_cart', eventData);
             logEvent('add_to_cart', eventData);
+            
             updateCartDisplay();
-            
-            // Özel event - Ürün kategorisi tracking
-            const categoryEvent = {
-                event: 'product_category_interaction',
-                category: getProductCategory(itemName),
-                action: 'add_to_cart',
-                product_name: itemName,
-                product_price: price
-            };
-            
-            dataLayer.push(categoryEvent);
-            logEvent('product_category_interaction', categoryEvent);
+            showNotification(`${itemName} sepete eklendi!`);
         }
         
-        // Ürün kategorisini belirle
-        function getProductCategory(productName) {
-            if (productName.includes('iPhone')) return 'Telefon';
-            if (productName.includes('MacBook')) return 'Bilgisayar';
-            if (productName.includes('AirPods')) return 'Aksesuar';
-            if (productName.includes('Watch')) return 'Giyilebilir';
-            return 'Diğer';
-        }
-        
-        // Sepet görüntüsünü güncelle
         function updateCartDisplay() {
-            const cartItems = document.getElementById('cartItems');
-            const cartCount = document.getElementById('cartCount');
-            const cartTotal = document.getElementById('cartTotal');
-            const totalAmount = document.getElementById('totalAmount');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            
             let itemCount = 0;
             let total = 0;
-            let itemsHTML = '';
             
             for (const [id, item] of Object.entries(cart)) {
                 itemCount += item.quantity;
                 total += item.price * item.quantity;
-                
-                itemsHTML += `
-                    <div class="cart-item">
-                        <span>${item.name} (${item.quantity}x)</span>
-                        <span>₺${(item.price * item.quantity).toLocaleString()}</span>
-                    </div>
-                `;
             }
             
-            cartItems.innerHTML = itemsHTML;
-            cartCount.textContent = itemCount;
-            cartTotal.textContent = `₺${total.toLocaleString()}`;
-            totalAmount.textContent = `Toplam: ₺${total.toLocaleString()}`;
-            
-            checkoutBtn.style.display = itemCount > 0 ? 'block' : 'none';
+            document.getElementById('cartCount').textContent = itemCount;
+            document.getElementById('cartTotal').textContent = `₺${total.toLocaleString()}`;
         }
         
-        // Satın alma işlemi
-        function checkout() {
-            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const items = Object.entries(cart).map(([id, item]) => ({
-                item_id: id,
-                item_name: item.name,
-                currency: 'TRY',
-                price: item.price,
-                quantity: item.quantity
-            }));
+        function viewCart() {
+            navigate('cart');
             
-            // Purchase event
-            const purchaseEvent = {
-                event: 'purchase',
-                transaction_id: 'TXN_' + Date.now(),
-                value: total,
+            const eventData = {
+                event: 'view_cart',
                 currency: 'TRY',
-                items: items
+                value: Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                items: Object.entries(cart).map(([id, item]) => ({
+                    item_id: id,
+                    item_name: item.name,
+                    currency: 'TRY',
+                    price: item.price,
+                    quantity: item.quantity
+                }))
             };
             
-            // DataLayer'a gönder
-            dataLayer.push(purchaseEvent);
-            
-            // GA4'e gönder
-            gtag('event', 'purchase', {
-                transaction_id: 'TXN_' + Date.now(),
-                value: total,
-                currency: 'TRY',
-                items: items
-            });
-            
-            logEvent('purchase', purchaseEvent);
-            
-            // Conversion tracking
-            const conversionEvent = {
-                event: 'conversion_completed',
-                conversion_value: total,
-                conversion_currency: 'TRY',
-                conversion_items_count: Object.values(cart).reduce((sum, item) => sum + item.quantity, 0)
-            };
-            
-            dataLayer.push(conversionEvent);
-            logEvent('conversion_completed', conversionEvent);
-            
-            alert(`Satın alma tamamlandı! Toplam: ₺${total.toLocaleString()}`);
-            
-            // Sepeti temizle
-            cart = {};
-            updateCartDisplay();
+            dataLayer.push(eventData);
+            gtag('event', 'view_cart', eventData);
+            logEvent('view_cart', eventData);
         }
         
-        // Debug panel toggle
-        function toggleDebug() {
-            debugMode = !debugMode;
-            const debugPanel = document.getElementById('debugPanel');
-            debugPanel.style.display = debugMode ? 'block' : 'none';
-            
-            if (debugMode) {
-                logEvent('debug_mode_enabled', { timestamp: new Date().toISOString() });
+        // Arama işlemleri
+        function searchProducts(event) {
+            if (event.key === 'Enter') {
+                performSearch();
             }
         }
         
-        // Event filtreleme
-        function filterEvents(filter) {
-            eventFilter = filter;
+        function performSearch() {
+            searchTerm = document.getElementById('searchInput').value;
             
-            // Filter butonlarının görünümünü güncelle
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            const eventData = {
+                event: 'search',
+                search_term: searchTerm,
+                page_location: window.location.href,
+                results_count: Math.floor(Math.random() * 50) + 1
+            };
             
-            // Debug logunu temizle ve yeniden filtrele
-            document.getElementById('debugLog').innerHTML = '';
+            dataLayer.push(eventData);
+            gtag('event', 'search', eventData);
+            logEvent('search', eventData);
+            
+            showNotification(`"${searchTerm}" için arama yapıldı`);
         }
         
-        // Scroll tracking
-        let scrollTracked = false;
-        window.addEventListener('scroll', function() {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            searchTerm = '';
             
-            if (scrollPercent > 50 && !scrollTracked) {
-                scrollTracked = true;
+            logEvent('search_cleared', { action: 'clear_search' });
+        }
+        
+        // Filtreleme işlemleri
+        function filterByCategory(category) {
+            const index = activeFilters.category.indexOf(category);
+            if (index > -1) {
+                activeFilters.category.splice(index, 1);
+            } else {
+                activeFilters.category.push(category);
+            }
+            
+            const eventData = {
+                event: 'filter_applied',
+                filter_type: 'category',
+                filter_value: category,
+                active_filters: activeFilters
+            };
+            
+            dataLayer.push(eventData);
+            gtag('event', 'filter_applied', eventData);
+            logEvent('filter_applied', eventData);
+        }
+        
+        function filterByPrice(range) {
+            const eventData = {
+                event: 'filter_applied',
+                filter_type: 'price',
+                filter_value: range
+            };
+            
+            dataLayer.push(eventData);
+            logEvent('filter_applied', eventData);
+        }
+        
+        function filterByBrand(brand) {
+            const eventData = {
+                event: 'filter_applied',
+                filter_type: 'brand',
+                filter_value: brand
+            };
+            
+            dataLayer.push(eventData);
+            logEvent('filter_applied', eventData);
+        }
+        
+        // Sıralama
+        function sortProducts(sortType) {
+            const eventData = {
+                event: 'sort_applied',
+                sort_type: sortType,
+                page: currentPage
+            };
+            
+            dataLayer.push(eventData);
+            logEvent('sort_applied', eventData);
+        }
+        
+        // Ürün işlemleri
+        function viewProduct(productId) {
+            const eventData = {
+                event: 'view_item',
+                currency: 'TRY',
+                value: getProductPrice(productId),
+                items: [{
+                    item_id: productId,
+                    item_name: getProductName(productId),
+                    currency: 'TRY',
+                    price: getProductPrice(productId),
+                    quantity: 1
+                }]
+            };
+            
+            dataLayer.push(eventData);
+            gtag('event', 'view_item', eventData);
+            logEvent('view_item', eventData);
+        }
+        
+        function addToWishlist(productId) {
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
                 
-                const scrollEvent = {
-                    event: 'scroll_depth',
-                    scroll_depth: Math.round(scrollPercent),
-                    page_path: window.location.pathname
+                const eventData = {
+                    event: 'add_to_wishlist',
+                    currency: 'TRY',
+                    value: getProductPrice(productId),
+                    items: [{
+                        item_id: productId,
+                        item_name: getProductName(productId),
+                        currency: 'TRY',
+                        price: getProductPrice(productId),
+                        quantity: 1
+                    }]
                 };
                 
-                dataLayer.push(scrollEvent);
-                gtag('event', 'scroll', {
-                    scroll_depth: Math.round(scrollPercent)
+                dataLayer.push(eventData);
+                gtag('event', 'add_to_wishlist', eventData);
+                logEvent('add_to_wishlist', eventData);
+                
+                showNotification('Favorilere eklendi!');
+            }
+        }
+        
+        function compareProduct(productId) {
+            if (!compareList.includes(productId)) {
+                compareList.push(productId);
+                
+                logEvent('add_to_compare', {
+                    event: 'add_to_compare',
+                    product_id: productId,
+                    compare_list_count: compareList.length
                 });
                 
-                logEvent('scroll_depth', scrollEvent);
+                showNotification('Karşılaştırma listesine eklendi!');
             }
-        });
+        }
         
-        // Sayfa çıkış tracking
-        window.addEventListener('beforeunload', function() {
-            const sessionData = {
-                event: 'session_end',
-                session_duration: Date.now() - sessionStartTime,
-                cart_items_count: Object.values(cart).reduce((sum, item) => sum + item.quantity, 0),
-                cart_value: Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        // Kategori görüntüleme
+        function viewCategory(category) {
+            const eventData = {
+                event: 'view_item_list',
+                item_list_name: category,
+                items: getItemsByCategory(category)
             };
             
-            dataLayer.push(sessionData);
-            logEvent('session_end', sessionData);
-        });
-        
-        // Session tracking
-        const sessionStartTime = Date.now();
-        const sessionEvent = {
-            event: 'session_start',
-            timestamp: new Date().toISOString(),
-            user_agent: navigator.userAgent,
-            screen_resolution: `${screen.width}x${screen.height}`
-        };
-        
-        dataLayer.push(sessionEvent);
-        
-        // Sayfa yüklendikten sonra tracking başlat
-        document.addEventListener('DOMContentLoaded', function() {
-            trackPageView();
-            logEvent('session_start', sessionEvent);
+            dataLayer.push(eventData);
+            gtag('event', 'view_item_list', eventData);
+            logEvent('view_item_list', eventData);
             
-            // Test için otomatik event gönderimi
-            setTimeout(() => {
-                const testEvent = {
-                    event: 'test_event',
-                    test_parameter: 'Analytics test başarılı',
-                    timestamp: new Date().toISOString()
-                };
-                dataLayer.push(testEvent);
-                logEvent('test_event', testEvent);
-            }, 2000);
-        });
-    </script>
-</body>
-</html>
+            navigate('category-' + category);
+        }
+        
+        // Sosyal medya paylaşım
+        function shareOnSocial(platform) {
+            const eventData = {
+                event: 'share',
+                method: platform,
+                content_type: 'product',
+                item_id: 'homepage'
+            };
+            
+            dataLayer.push(eventData);
+            gtag('event', 'share', eventData);
+            logEvent('share', eventData);
+            
+            showNotification(`${platform} üzerinde paylaşıldı!`);
+        }
+        
+        // Diğer işlemler
+        function downloadCatalog() {
+            logEvent('file_download', {
+                event: 'file_download',
+                file_name: 'product_catalog.pdf',
+                file_extension: 'pdf',
+                link_url: '/downloads/catalog.pdf'
+            });
+            showNotification('Katalog indiriliyor...');
+        }
+        
+        function subscribeNewsletter() {
+            logEvent('newsletter_signup', {
+                event: 'newsletter_signup',
+                method: 'website_form'
+            });
+            showNotification('Bültene abone oldunuz!');
+        }
+        
+        function requestSupport() {
+            logEvent('support_request', {
+                event: 'support_request',
+                support_type: 'general',
+                page: currentPage
+            });
+            navigate('support');
+        }
+        
+        // Yardımcı fonksiyonlar
+        function getProductCategory(productName) {
+            if (productName.includes('iPhone') || productName.includes('Galaxy') || productName.includes('Redmi')) return 'telefon';
+            if (productName.includes('MacBook')) return 'bilgisayar';
+            if (productName.includes('AirPods')) return 'aksesuar';
+            if (productName.includes('Watch')) return 'giyilebilir';
+            return 'diger';
+        }
+        
+        function getProductBrand(productName) {
+            if (productName.includes('iPhone') || productName.includes('MacBook') || productName.includes('AirPods') || productName.includes('Apple')) return 'apple';
+            if (productName.includes('Galaxy') || productName.includes('Samsung')) return 'samsung';
+            if (productName.includes('Xiaomi') || productName.includes('Redmi')) return 'xiaomi';
+            return 'diger';
+        }
+        
+        function getProductName(productId) {
+            const products = {
+                'iphone15pro': 'iPhone 15 Pro',
+                'macbookprom3': 'MacBook Pro M3',
+                'airpodspro': 'AirPods Pro',
+                'applewatchs9': 'Apple Watch Series 9',
+                'galaxys24': 'Samsung Galaxy S24',
+                'redminote13': 'Xiaomi Redmi Note 13'
+            };
+            return products[productId] || productId;
+        }
+        
+        function getProductPrice(product
