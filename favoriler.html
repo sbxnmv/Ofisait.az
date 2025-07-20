@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorilerim - Ofisait.az</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0FR937JZ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V0FR937JZ2');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        /* Search Container */
+        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
+        .search-input:focus { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .search-btn:hover { background: #e67e22; transform: translateY(-50%) scale(1.1); }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        .user-btn.active { background: rgba(255,255,255,0.4); }
+        
+        /* Navigation */
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
+        .nav a:hover, .nav a.active { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Cart Widget */
+        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .cart-widget:hover { transform: scale(1.05); background: #d35400; color: white; }
+        .cart-count { font-weight: bold; font-size: 18px; }
+        
+        /* Breadcrumb */
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        
+        /* Wishlist Container */
+        .wishlist-container { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        
+        .wishlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #f39c12; }
+        .wishlist-header h1 { color: #2c3e50; margin: 0; }
+        .wishlist-stats { display: flex; gap: 20px; color: #7f8c8d; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #e67e22; display: block; }
+        .stat-label { font-size: 12px; }
+        
+        .wishlist-actions { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .action-btn { padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: 500; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .btn-clear { background: #e74c3c; color: white; }
+        .btn-clear:hover { background: #c0392b; transform: translateY(-2px); }
+        .btn-share { background: #3498db; color: white; }
+        .btn-share:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-sort { background: #95a5a6; color: white; }
+        .btn-sort:hover { background: #7f8c8d; transform: translateY(-2px); }
+        
+        /* Empty Wishlist */
+        .empty-wishlist { text-align: center; padding: 50px 20px; }
+        .empty-icon { font-size: 80px; margin-bottom: 20px; opacity: 0.5; }
+        .empty-message { font-size: 18px; color: #7f8c8d; margin-bottom: 20px; }
+        .empty-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: #f39c12; color: white; padding: 12px 25px; border: none; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .btn-primary:hover { background: #e67e22; transform: translateY(-2px); color: white; }
+        
+        /* Wishlist Grid */
+        .wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .wishlist-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; position: relative; }
+        .wishlist-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        
+        .wishlist-item-image { height: 200px; background: linear-gradient(45deg, #f0f2f5, #e9ecef); display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; cursor: pointer; }
+        
+        .remove-btn { position: absolute; top: 10px; right: 10px; background: rgba(231, 76, 60, 0.9); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+        .remove-btn:hover { background: #c0392b; transform: scale(1.1); }
+        
+        .availability-badge { position: absolute; top: 10px; left: 10px; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
+        .badge-available { background: #27ae60; color: white; }
+        .badge-unavailable { background: #e74c3c; color: white; }
+        .badge-limited { background: #f39c12; color: white; }
+        
+        .wishlist-item-info { padding: 20px; }
+        .item-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #2c3e50; cursor: pointer; }
+        .item-title:hover { color: #f39c12; }
+        .item-price { font-size: 20px; font-weight: bold; color: #e67e22; margin-bottom: 5px; }
+        .item-old-price { font-size: 16px; color: #95a5a6; text-decoration: line-through; margin-left: 10px; }
+        .item-discount { background: #e74c3c; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin-left: 10px; }
+        .item-features { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .item-added-date { font-size: 12px; color: #95a5a6; margin-bottom: 15px; }
+        
+        .item-actions { display: flex; gap: 10px; }
+        .btn { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s; font-size: 14px; }
+        .btn-cart { background: #f39c12; color: white; flex: 1; }
+        .btn-cart:hover { background: #e67e22; }
+        .btn-cart:disabled { background: #95a5a6; cursor: not-allowed; }
+        .btn-compare { background: #3498db; color: white; }
+        .btn-compare:hover { background: #2980b9; }
+        .btn-view { background: #95a5a6; color: white; }
+        .btn-view:hover { background: #7f8c8d; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wishlist-grid { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; gap: 15px; }
+            .nav-content { justify-content: center; }
+            .search-container { min-width: auto; width: 100%; }
+            .user-actions { justify-content: center; flex-wrap: wrap; }
+            .wishlist-header { flex-direction: column; gap: 15px; text-align: center; }
+            .wishlist-actions { justify-content: center; }
+            .empty-actions { flex-direction: column; align-items: center; }
+        }
+        
+        /* Animation */
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-out { animation: slideOut 0.3s ease-out forwards; }
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-100%); }
+        }
+        
+        /* Toast Notification */
+        .toast { position: fixed; top: 100px; right: 20px; background: #27ae60; color: white; padding: 15px 25px; border-radius: 10px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: slideInRight 0.5s ease-out; }
+        .toast.error { background: #e74c3c; }
+        .toast.warning { background: #f39c12; }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn">👤 Giriş Yap</a>
+                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
+                    <a href="favoriler.html" class="user-btn active">❤️ Favoriler</a>
+                    <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html">📺 Televizyonlar</a>
+                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html">🔥 Kampanyalar</a>
+                <a href="destek.html">💬 Destek</a>
+                <a href="iletisim.html">📞 İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Widget -->
+    <a href="sepet.html" class="cart-widget">
+        <div class="cart-count">🛒 <span id="cartCount">0</span></div>
+        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+    </a>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Ana Sayfa</a> > <span>Favorilerim</span>
+        </div>
+        
+        <!-- Wishlist Container -->
+        <div class="wishlist-container fade-in">
+            <div class="wishlist-header">
+                <h1>❤️ Favorilerim</h1>
+                <div class="wishlist-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalItems">0</span>
+                        <span class="stat-label">Toplam Ürün</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="availableItems">0</span>
+                        <span class="stat-label">Stokta Var</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">₺<span id="totalValue">0</span></span>
+                        <span class="stat-label">Toplam Değer</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wishlist-actions">
+                <button class="action-btn btn-clear" onclick="clearWishlist()">
+                    🗑️ Tümünü Temizle
+                </button>
+                <button class="action-btn btn-share" onclick="shareWishlist()">
+                    📤 Paylaş
+                </button>
+                <button class="action-btn btn-sort" onclick="toggleSort()">
+                    🔄 Sırala: <span id="sortType">Yeni Eklenen</span>
+                </button>
+            </div>
+            
+            <!-- Empty Wishlist -->
+            <div id="emptyWishlist" class="empty-wishlist" style="display: none;">
+                <div class="empty-icon">💔</div>
+                <div class="empty-message">Henüz favori ürününüz bulunmuyor</div>
+                <p style="color: #95a5a6; margin-bottom: 30px;">Beğendiğiniz ürünleri favorilere ekleyerek daha sonra kolayca bulabilirsiniz.</p>
+                <div class="empty-actions">
+                    <a href="index.html" class="btn-primary">🏠 Ana Sayfaya Dön</a>
+                    <a href="kampanyalar.html" class="btn-primary">🔥 Kampanyaları İncele</a>
+                </div>
+            </div>
+            
+            <!-- Wishlist Grid -->
+            <div id="wishlistGrid" class="wishlist-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let sortType = 'newest'; // newest, oldest, price-high, price-low, name
+        
+        // DataLayer initialization
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Sample Products Data (same as in main site)
+        const products = {
+            'iphone15pro': { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, oldPrice: 49999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa', availability: 'available' },
+            'samsungs24': { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera', availability: 'available' },
+            'lgtv55': { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR', availability: 'limited' },
+            'macbookpro': { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB', availability: 'unavailable' },
+            'airpods': { id: 'airpods', name: 'AirPods Pro 2', price: 8999, oldPrice: 9999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme', availability: 'available' },
+            'ps5': { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD', availability: 'available' }
+        };
+
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Search input event listeners
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Load Wishlist
+        function loadWishlist() {
+            const wishlistData = JSON.parse(localStorage.getItem('wishlistData')) || {};
+            const grid = document.getElementById('wishlistGrid');
+            const emptyState = document.getElementById('emptyWishlist');
+            
+            if (wishlist.length === 0) {
+                emptyState.style.display = 'block';
+                grid.style.display = 'none';
+                updateWishlistStats();
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            grid.style.display = 'grid';
+            
+            // Get wishlist items with product data
+            let wishlistItems = wishlist.map(productId => {
+                const product = products[productId];
+                const wishlistInfo = wishlistData[productId] || { addedDate: new Date().toISOString() };
+                return product ? { ...product, addedDate: wishlistInfo.addedDate } : null;
+            }).filter(item => item !== null);
+            
+            // Sort items
+            wishlistItems = sortWishlistItems(wishlistItems);
+            
+            grid.innerHTML = wishlistItems.map(item => {
+                const addedDate = new Date(item.addedDate).toLocaleDateString('tr-TR');
+                const discount = item.oldPrice ? Math.round((1 - item.price / item.oldPrice) * 100) : 0;
+                const availabilityInfo = getAvailabilityInfo(item.availability);
+                
+                return `
+                    <div class="wishlist-item fade-in" data-id="${item.id}">
+                        <div class="wishlist-item-image" onclick="viewProduct('${item.id}')">
+                            ${item.image}
+                            <button class="remove-btn" onclick="event.stopPropagation(); removeFromWishlist('${item.id}')">✕</button>
+                            <div class="availability-badge badge-${item.availability}">
+                                ${availabilityInfo.text}
+                            </div>
+                        </div>
+                        <div class="wishlist-item-info">
+                            <div class="item-title" onclick="viewProduct('${item.id}')">${item.name}</div>
+                            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                                <div class="item-price">₺${item.price.toLocaleString()}</div>
+                                ${item.oldPrice ? `
+                                    <span class="item-old-price">₺${item.oldPrice.toLocaleString()}</span>
+                                    <span class="item-discount">-%${discount}</span>
+                                ` : ''}
+                            </div>
+                            <div class="item-features">${item.features}</div>
+                            <div class="item-added-date">📅 ${addedDate} tarihinde eklendi</div>
+                            <div class="item-actions">
+                                <button class="btn btn-cart" 
+                                        onclick="addToCart('${item.id}')"
+                                        ${item.availability === 'unavailable' ? 'disabled' : ''}>
+                                    ${item.availability === 'unavailable' ? '❌ Stokta Yok' : '🛒 Sepete Ekle'}
+                                </button>
+                                <button class="btn btn-compare" onclick="addToCompare('${item.id}')">⚖️</button>
+                                <button class="btn btn-view" onclick="viewProduct('${item.id}')">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            updateWishlistStats();
+        }
+
+        // Get Availability Info
+        function getAvailabilityInfo(availability) {
+            switch (availability) {
+                case 'available':
+                    return { text: '✅ Stokta', class: 'available' };
+                case 'limited':
+                    return { text: '⚠️ Sınırlı', class: 'limited' };
+                case 'unavailable':
+                    return { text: '❌ Tükendi', class: 'unavailable' };
+                default:
+                    return { text: '✅ Stokta', class: 'available' };
+            }
+        }
+
+        // Sort Wishlist Items
+        function sortWishlistItems(items) {
+            switch (sortType) {
+                case 'newest':
+                    return items.sort((a, b) => new Date(b.addedDate) - new Date(a.addedDate));
+                case 'oldest':
+                    return items.sort((a, b) => new Date(a.addedDate) - new Date(b.addedDate));
+                case 'price-high':
+                    return items.sort((a, b) => b.price - a.price);
+                case 'price-low':
+                    return items.sort((a, b) => a.price - b.price);
+                case 'name':
+                    return items.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+                default:
+                    return items;
+            }
+        }
+
+        // Toggle Sort
+        function toggleSort() {
+            const sortTypes = {
+                'newest': { next: 'oldest', label: 'Eski Eklenen' },
+                'oldest': { next: 'price-high', label: 'Fiyat (Yüksek)' },
+                'price-high': { next: 'price-low', label: 'Fiyat (Düşük)' },
+                'price-low': { next: 'name', label: 'İsme Göre' },
+                'name': { next: 'newest', label: 'Yeni Eklenen' }
+            };
+            
+            sortType = sortTypes[sortType].next;
+            document.getElementById('sortType').textContent = sortTypes[sortType].label;
+            loadWishlist();
+        }
+
+        // Update Wishlist Stats
+        function updateWishlistStats() {
+            const totalItems = wishlist.length;
+            let availableItems = 0;
+            let totalValue = 0;
+            
+            wishlist.forEach(productId => {
+                const product = products[productId];
+                if (product) {
+                    if (product.availability === 'available' || product.availability === 'limited') {
+                        availableItems++;
+                    }
+                    totalValue += product.price;
+                }
+            });
+            
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('availableItems').textContent = availableItems;
+            document.getElementById('totalValue').textContent = totalValue.toLocaleString();
+        }
+
+        // Remove from Wishlist
+        function removeFromWishlist(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const itemElement = document.querySelector(`[data-id="${productId}"]`);
+            if (itemElement) {
+                itemElement.classList.add('slide-out');
+                setTimeout(() => {
+                    wishlist = wishlist.filter(id => id !== productId);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    
+                    // Remove from wishlist data
+                    const wishlistData = JSON.parse(localStorage.getItem('wishlistData')) || {};
+                    delete wishlistData[productId];
+                    localStorage.setItem('wishlistData', JSON.stringify(wishlistData));
+                    
+                    // Track removal
+                    const eventData = {
+                        event: 'remove_from_wishlist',
+                        currency: 'TRY',
+                        value: product.price,
+                        items: [{
+                            item_id: productId,
+                            item_name: product.name,
+                            currency: 'TRY',
+                            price: product.price
+                        }]
+                    };
+                    dataLayer.push(eventData);
+                    gtag('event', 'remove_from_wishlist', eventData);
+                    
+                    loadWishlist();
+                    showToast(`${product.name} favorilerden kaldırıldı! 💔`);
+                }, 300);
+            }
+        }
+
+        // Clear Wishlist
+        function clearWishlist() {
+            if (wishlist.length === 0) {
+                showToast('Favori listeniz zaten boş! 🤷‍♂️', 'warning');
+                return;
+            }
+            
+            if (confirm(`Tüm favori ürünlerinizi (${wishlist.length} adet) kaldırmak istediğinizden emin misiniz?`)) {
+                // Track clear event
+                const eventData = {
+                    event:
