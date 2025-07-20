@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesabım - Ofisait.az</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0FR937JZ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V0FR937JZ2');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        /* Search Container */
+        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
+        .search-input:focus { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .search-btn:hover { background: #e67e22; transform: translateY(-50%) scale(1.1); }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        .user-btn.active { background: rgba(255,255,255,0.3); }
+        
+        /* Navigation */
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
+        .nav a:hover, .nav a.active { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Breadcrumb */
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin: 20px 0; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        
+        /* Account Layout */
+        .account-layout { display: grid; grid-template-columns: 280px 1fr; gap: 25px; margin: 25px 0; }
+        
+        /* Account Sidebar */
+        .account-sidebar { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); height: fit-content; }
+        .profile-header { text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f39c12; }
+        .profile-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 15px; }
+        .profile-name { font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+        .profile-email { color: #666; font-size: 14px; }
+        
+        .account-menu { list-style: none; }
+        .account-menu li { margin-bottom: 8px; }
+        .account-menu a { display: flex; align-items: center; gap: 12px; padding: 12px 15px; text-decoration: none; color: #2c3e50; border-radius: 10px; transition: all 0.3s; }
+        .account-menu a:hover, .account-menu a.active { background: #f8f9fa; color: #e67e22; transform: translateX(5px); }
+        .menu-icon { font-size: 18px; width: 20px; }
+        
+        /* Account Content */
+        .account-content { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Section Headers */
+        .section-title { font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-subtitle { font-size: 18px; font-weight: 600; color: #34495e; margin: 25px 0 15px 0; }
+        
+        /* Forms */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 5px; font-weight: 500; color: #2c3e50; }
+        .form-input { width: 100%; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 10px; font-size: 16px; transition: all 0.3s; }
+        .form-input:focus { border-color: #f39c12; outline: none; box-shadow: 0 0 10px rgba(243, 156, 18, 0.1); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .btn { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s; font-size: 16px; }
+        .btn-primary { background: #f39c12; color: white; }
+        .btn-primary:hover { background: #e67e22; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-danger:hover { background: #c0392b; }
+        
+        /* Cards */
+        .info-card { background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #f39c12; }
+        .info-card h4 { color: #2c3e50; margin-bottom: 10px; }
+        .info-card p { color: #666; margin-bottom: 8px; }
+        
+        /* Orders */
+        .order-item { background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 15px; border: 1px solid #ecf0f1; }
+        .order-header { display: flex; justify-content: between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .order-number { font-weight: bold; color: #2c3e50; }
+        .order-date { color: #666; font-size: 14px; }
+        .order-status { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .status-completed { background: #d5f4e6; color: #27ae60; }
+        .status-processing { background: #fef9e7; color: #f39c12; }
+        .status-shipped { background: #e8f4fd; color: #3498db; }
+        .status-cancelled { background: #fadbd8; color: #e74c3c; }
+        
+        .order-items { margin: 15px 0; }
+        .order-item-row { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px solid #ecf0f1; }
+        .order-item-row:last-child { border-bottom: none; }
+        .item-image { width: 50px; height: 50px; background: #ecf0f1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .item-details { flex-grow: 1; }
+        .item-name { font-weight: 500; color: #2c3e50; }
+        .item-price { color: #e67e22; font-weight: bold; }
+        
+        .order-total { text-align: right; font-size: 18px; font-weight: bold; color: #2c3e50; margin-top: 15px; }
+        
+        /* Address Cards */
+        .address-card { background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 15px; border: 1px solid #ecf0f1; position: relative; }
+        .address-card.default { border-color: #f39c12; }
+        .address-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .address-type { font-weight: bold; color: #2c3e50; }
+        .default-badge { background: #f39c12; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px; }
+        .address-content { color: #666; line-height: 1.5; }
+        .address-actions { margin-top: 15px; display: flex; gap: 10px; }
+        
+        /* Statistics Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; }
+        .stat-number { font-size: 32px; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { opacity: 0.9; font-size: 14px; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .account-layout { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .order-header { flex-direction: column; align-items: flex-start; }
+            .search-container { min-width: auto; width: 100%; }
+            .header-content { flex-direction: column; gap: 15px; }
+            .nav-content { justify-content: center; }
+            .user-actions { justify-content: center; flex-wrap: wrap; }
+        }
+        
+        /* Animations */
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Hidden sections */
+        .account-section { display: none; }
+        .account-section.active { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn">👤 Giriş Yap</a>
+                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Favoriler</a>
+                    <a href="hesabim.html" class="user-btn active">⚙️ Hesabım</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html">📺 Televizyonlar</a>
+                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html">🔥 Kampanyalar</a>
+                <a href="destek.html">💬 Destek</a>
+                <a href="iletisim.html">📞 İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Ana Sayfa</a> / <span>Hesabım</span>
+        </div>
+        
+        <div class="account-layout">
+            <!-- Sidebar -->
+            <div class="account-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-name" id="profileName">Ahmet Yılmaz</div>
+                    <div class="profile-email" id="profileEmail">ahmet@example.com</div>
+                </div>
+                
+                <ul class="account-menu">
+                    <li><a href="#" class="menu-item active" data-section="overview">
+                        <span class="menu-icon">📊</span> Genel Bakış
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="profile">
+                        <span class="menu-icon">👤</span> Profil Bilgileri
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="orders">
+                        <span class="menu-icon">📦</span> Siparişlerim
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="addresses">
+                        <span class="menu-icon">📍</span> Adreslerim
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="payment">
+                        <span class="menu-icon">💳</span> Ödeme Yöntemleri
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="security">
+                        <span class="menu-icon">🔐</span> Güvenlik
+                    </a></li>
+                    <li><a href="#" class="menu-item" data-section="notifications">
+                        <span class="menu-icon">🔔</span> Bildirimler
+                    </a></li>
+                    <li><a href="#" onclick="logout()">
+                        <span class="menu-icon">🚪</span> Çıkış Yap
+                    </a></li>
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="account-content">
+                <!-- Overview Section -->
+                <div id="overview" class="account-section active fade-in">
+                    <h2 class="section-title">📊 Genel Bakış</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalOrders">12</div>
+                            <div class="stat-label">Toplam Sipariş</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalSpent">₺45.680</div>
+                            <div class="stat-label">Toplam Harcama</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalSaved">₺5.240</div>
+                            <div class="stat-label">Toplam Tasarruf</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="memberSince">2 Yıl</div>
+                            <div class="stat-label">Üyelik Süresi</div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-subtitle">Son Siparişler</h3>
+                    <div id="recentOrders">
+                        <!-- Recent orders will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div id="profile" class="account-section">
+                    <h2 class="section-title">👤 Profil Bilgileri</h2>
+                    
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Ad</label>
+                                <input type="text" class="form-input" id="firstName" value="Ahmet">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Soyad</label>
+                                <input type="text" class="form-input" id="lastName" value="Yılmaz">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">E-posta</label>
+                            <input type="email" class="form-input" id="email" value="ahmet@example.com">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Telefon</label>
+                                <input type="tel" class="form-input" id="phone" value="+90 555 123 4567">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Doğum Tarihi</label>
+                                <input type="date" class="form-input" id="birthDate" value="1985-05-15">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Cinsiyet</label>
+                            <select class="form-input" id="gender">
+                                <option value="male" selected>Erkek</option>
+                                <option value="female">Kadın</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                    </form>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="orders" class="account-section">
+                    <h2 class="section-title">📦 Siparişlerim</h2>
+                    
+                    <div id="ordersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Addresses Section -->
+                <div id="addresses" class="account-section">
+                    <h2 class="section-title">📍 Adreslerim</h2>
+                    
+                    <button class="btn btn-primary" style="margin-bottom: 20px;" onclick="showAddAddressForm()">
+                        ➕ Yeni Adres Ekle
+                    </button>
+                    
+                    <div id="addressesList">
+                        <!-- Addresses will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Payment Methods Section -->
+                <div id="payment" class="account-section">
+                    <h2 class="section-title">💳 Ödeme Yöntemleri</h2>
+                    
+                    <div class="info-card">
+                        <h4>🔒 Güvenli Ödeme</h4>
+                        <p>Kart bilgileriniz SSL ile şifrelenir ve güvenli sunucularda saklanır.</p>
+                        <p>Hiçbir kart bilginiz sistemimizde saklanmaz.</p>
+                    </div>
+                    
+                    <button class="btn btn-primary">Kart Ekle</button>
+                </div>
+
+                <!-- Security Section -->
+                <div id="security" class="account-section">
+                    <h2 class="section-title">🔐 Güvenlik</h2>
+                    
+                    <h3 class="section-subtitle">Şifre Değiştir</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label class="form-label">Mevcut Şifre</label>
+                            <input type="password" class="form-input" id="currentPassword">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Yeni Şifre</label>
+                            <input type="password" class="form-input" id="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Yeni Şifre (Tekrar)</label>
+                            <input type="password" class="form-input" id="confirmPassword">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Şifreyi Güncelle</button>
+                    </form>
+                    
+                    <h3 class="section-subtitle">İki Faktörlü Kimlik Doğrulama</h3>
+                    <div class="info-card">
+                        <h4>🛡️ Ekstra Güvenlik</h4>
+                        <p>Hesabınız için ekstra güvenlik katmanı ekleyin.</p>
+                        <button class="btn btn-secondary">Etkinleştir</button>
+                    </div>
+                </div>
+
+                <!-- Notifications Section -->
+                <div id="notifications" class="account-section">
+                    <h2 class="section-title">🔔 Bildirim Ayarları</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="info-card">
+                            <h4>📧 E-posta Bildirimleri</h4>
+                            <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <input type="checkbox" checked> Sipariş durumu güncellemeleri
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <input type="checkbox" checked> Kampanya ve fırsat bildirimleri
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <input type="checkbox"> Yeni ürün duyuruları
+                            </label>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4>📱 SMS Bildirimleri</h4>
+                            <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <input type="checkbox" checked> Kargo durumu
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                                <input type="checkbox"> Özel teklifler
+                            </label>
+                        </div>
+                        
+                        <button class="btn btn-primary">Ayarları Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let currentSection = 'overview';
+        
+        // DataLayer initialization
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Sample user data
+        const userData = {
+            profile: {
+                firstName: 'Ahmet',
+                lastName: 'Yılmaz',
+                email: 'ahmet@example.com',
+                phone: '+90 555 123 4567',
+                birthDate: '1985-05-15',
+                gender: 'male',
+                memberSince: '2022-03-15'
+            },
+            stats: {
+                totalOrders: 12,
+                totalSpent: 45680,
+                totalSaved: 5240
+            },
+            orders: [
+                {
+                    id: 'ORD-2024-001',
+                    date: '2024-07-15',
+                    status: 'delivered',
+                    total: 3599,
+                    items: [
+                        { name: 'iPhone 15 Pro Kılıfı', image: '📱', price: 299 },
+                        { name: 'Wireless Charger', image: '🔋', price: 599 }
+                    ]
+                },
+                {
+                    id: 'ORD-2024-002',
+                    date: '2024-07-10',
+                    status: 'processing',
+                    total: 15999,
+                    items: [
+                        { name: 'Samsung Galaxy Buds', image: '🎧', price: 1599 }
+                    ]
+                }
+            ],
+            addresses: [
+                {
+                    id: 1,
+                    type: 'Ev',
+                    isDefault: true,
+                    fullName: 'Ahmet Yılmaz',
+                    phone: '+90 555 123 4567',
+                    address: 'Nizami Rayonu, 28 May küç. 12/5',
+                    city: 'Bakı',
+                    district: 'Nizami',
+                    postalCode: 'AZ1000'
+                },
+                {
+                    id: 2,
+                    type: 'İş',
+                    isDefault: false,
+                    fullName: 'Ahmet Yılmaz',
+                    phone: '+90 555 123 4567',
+                    address: 'Yasamal Rayonu, Mərdəkan şosesi 15',
+                    city: 'Bakı',
+                    district: 'Yasamal',
+                    postalCode: 'AZ1001'
+                }
+            ]
+        };
+
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Menu navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.account-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList
