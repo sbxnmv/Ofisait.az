@@ -1,401 +1,67 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arama Sonuçları - Ofisait.az</title>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
-    <!-- End Google Tag Manager -->
+<title>Axtarış Nəticələri - Ofisait.az</title>
+<input type="text" id="searchInput" placeholder="Məhsul axtarın..." class="search-input">
+<button class="search-btn" onclick="performSearch()">🔍</button>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0FR937JZ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-V0FR937JZ2');
-    </script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Header */
-        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
-        
-        /* Search Container */
-        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
-        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
-        .search-input:focus { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
-        .search-btn:hover { background: #e67e22; transform: translateY(-50%) scale(1.1); }
-        
-        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
-        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
-        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
-        
-        /* Navigation */
-        .nav { background: #d35400; padding: 12px 0; }
-        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
-        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
-        .nav a:hover, .nav a.active { background: #e67e22; transform: translateY(-2px); }
-        
-        /* Main Layout */
-        .main-layout { display: grid; grid-template-columns: 250px 1fr; gap: 25px; margin: 25px 0; }
-        
-        /* Content Area */
-        .content { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); min-height: 500px; }
-        
-        /* Search Results */
-        .search-header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #ecf0f1; }
-        .search-title { font-size: 24px; color: #2c3e50; margin-bottom: 10px; }
-        .search-info { color: #666; font-size: 16px; }
-        .search-query { color: #e67e22; font-weight: bold; }
-        
-        /* Filter Section */
-        .filter-section { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); height: fit-content; }
-        .filter-title { font-size: 18px; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #f39c12; padding-bottom: 5px; }
-        .filter-group { margin-bottom: 20px; }
-        .filter-group h4 { margin-bottom: 10px; color: #34495e; font-size: 14px; text-transform: uppercase; }
-        .filter-option { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer; padding: 5px; border-radius: 5px; transition: all 0.3s; }
-        .filter-option:hover { background: #f8f9fa; }
-        .filter-option input[type="checkbox"] { accent-color: #f39c12; }
-        .filter-option label { cursor: pointer; flex-grow: 1; }
-        .price-range { display: flex; gap: 10px; align-items: center; margin: 10px 0; }
-        .price-input { width: 80px; padding: 5px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
-        
-        /* Product Grid */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
-        .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; cursor: pointer; border: 2px solid transparent; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); border-color: #f39c12; }
-        .product-image { height: 200px; background: linear-gradient(45deg, #f0f2f5, #e9ecef); display: flex; align-items: center; justify-content: center; font-size: 48px; }
-        .product-info { padding: 20px; }
-        .product-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #2c3e50; }
-        .product-price { font-size: 20px; font-weight: bold; color: #e67e22; margin-bottom: 10px; }
-        .product-features { font-size: 14px; color: #666; margin-bottom: 15px; }
-        .product-actions { display: flex; gap: 10px; }
-        .btn { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s; }
-        .btn-primary { background: #f39c12; color: white; }
-        .btn-primary:hover { background: #e67e22; }
-        .btn-secondary { background: #95a5a6; color: white; }
-        .btn-secondary:hover { background: #7f8c8d; }
-        
-        /* No Results */
-        .no-results { text-align: center; padding: 50px 20px; }
-        .no-results-icon { font-size: 64px; margin-bottom: 20px; }
-        .no-results h3 { color: #2c3e50; margin-bottom: 15px; font-size: 24px; }
-        .no-results p { color: #666; font-size: 16px; margin-bottom: 20px; }
-        .suggestions { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; }
-        .suggestions h4 { color: #2c3e50; margin-bottom: 15px; }
-        .suggestion-links { display: flex; gap: 10px; flex-wrap: wrap; }
-        .suggestion-link { background: #f39c12; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 14px; transition: all 0.3s; }
-        .suggestion-link:hover { background: #e67e22; transform: translateY(-2px); color: white; }
-        
-        /* Sort Options */
-        .sort-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; }
-        .sort-options select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; background: white; cursor: pointer; }
-        .view-toggle { display: flex; gap: 5px; }
-        .view-btn { padding: 8px 12px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; transition: all 0.3s; }
-        .view-btn.active { background: #f39c12; color: white; border-color: #f39c12; }
-        
-        /* Cart Widget */
-        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: all 0.3s; text-decoration: none; }
-        .cart-widget:hover { transform: scale(1.05); background: #d35400; color: white; }
-        .cart-count { font-weight: bold; font-size: 18px; }
-        
-        /* Breadcrumb */
-        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; }
-        .breadcrumb a { text-decoration: none; color: #f39c12; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        
-        /* Loading */
-        .loading { text-align: center; padding: 50px; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #f39c12; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-layout { grid-template-columns: 1fr; }
-            .product-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-            .header-content { flex-direction: column; gap: 15px; }
-            .nav-content { justify-content: center; }
-            .search-container { min-width: auto; width: 100%; }
-            .user-actions { justify-content: center; flex-wrap: wrap; }
-            .sort-section { flex-direction: column; gap: 15px; }
-        }
-        
-        /* Animation */
-        .fade-in { animation: fadeIn 0.5s ease-in; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<a href="giris.html" class="user-btn">👤 Daxil ol</a>
+<a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+<a href="favoriler.html" class="user-btn">❤️ Seçilmişlər</a>
+<a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">🏢 Ofisait.az</a>
-                
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
-                    <button class="search-btn" onclick="performSearch()">🔍</button>
-                </div>
-                
-                <div class="user-actions">
-                    <a href="giris.html" class="user-btn">👤 Giriş Yap</a>
-                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
-                    <a href="favoriler.html" class="user-btn">❤️ Favoriler</a>
-                    <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- Naviqasiya -->
+<a href="index.html">🏠 Ana Səhifə</a>
+<a href="telefonlar.html">📱 Telefonlar</a>
+<a href="televizyonlar.html">📺 Televizorlar</a>
+<a href="bilgisayarlar.html">💻 Kompüterlər</a>
+<a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+<a href="kampanyalar.html">🔥 Kampaniyalar</a>
+<a href="destek.html">💬 Dəstək</a>
+<a href="iletisim.html">📞 Əlaqə</a>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html">🏠 Ana Sayfa</a>
-                <a href="telefonlar.html">📱 Telefonlar</a>
-                <a href="televizyonlar.html">📺 Televizyonlar</a>
-                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
-                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
-                <a href="kampanyalar.html">🔥 Kampanyalar</a>
-                <a href="destek.html">💬 Destek</a>
-                <a href="iletisim.html">📞 İletişim</a>
-            </div>
-        </div>
-    </nav>
+<!-- Filtr bölməsi -->
+<div class="filter-title">🔍 Filtrlər</div>
+<h4>Kateqoriya</h4>
+<label for="cat-phones">📱 Telefonlar</label>
+<label for="cat-televisions">📺 Televizorlar</label>
+<label for="cat-computers">💻 Kompüterlər</label>
+<label for="cat-accessories">🎧 Aksesuarlar</label>
+<label for="cat-gaming">🎮 Oyun</label>
 
-    <!-- Cart Widget -->
-    <a href="sepet.html" class="cart-widget">
-        <div class="cart-count">🛒 <span id="cartCount">0</span></div>
-        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
-    </a>
+<h4>Brend</h4>
+<label for="brand-apple">🍎 Apple</label>
+<label for="brand-samsung">📱 Samsung</label>
+<label for="brand-lg">📺 LG</label>
+<label for="brand-sony">🎮 Sony</label>
 
-    <div class="container">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb">
-            <a href="index.html">Ana Sayfa</a> / <span id="breadcrumbSearch">Arama Sonuçları</span>
-        </div>
-        
-        <div class="main-layout">
-            <!-- Filter Sidebar -->
-            <div class="filter-section">
-                <div class="filter-title">🔍 Filtreler</div>
-                
-                <div class="filter-group">
-                    <h4>Kategori</h4>
-                    <div class="filter-option">
-                        <input type="checkbox" id="cat-phones" value="phones" onchange="applyFilters()">
-                        <label for="cat-phones">📱 Telefonlar</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="cat-televisions" value="televisions" onchange="applyFilters()">
-                        <label for="cat-televisions">📺 Televizyonlar</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="cat-computers" value="computers" onchange="applyFilters()">
-                        <label for="cat-computers">💻 Bilgisayarlar</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="cat-accessories" value="accessories" onchange="applyFilters()">
-                        <label for="cat-accessories">🎧 Aksesuarlar</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="cat-gaming" value="gaming" onchange="applyFilters()">
-                        <label for="cat-gaming">🎮 Oyun</label>
-                    </div>
-                </div>
+<h4>Qiymət Aralığı</h4>
+<input type="number" id="minPrice" placeholder="Minimum" class="price-input">
+<input type="number" id="maxPrice" placeholder="Maksimum" class="price-input">
 
-                <div class="filter-group">
-                    <h4>Marka</h4>
-                    <div class="filter-option">
-                        <input type="checkbox" id="brand-apple" value="apple" onchange="applyFilters()">
-                        <label for="brand-apple">🍎 Apple</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="brand-samsung" value="samsung" onchange="applyFilters()">
-                        <label for="brand-samsung">📱 Samsung</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="brand-lg" value="lg" onchange="applyFilters()">
-                        <label for="brand-lg">📺 LG</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="brand-sony" value="sony" onchange="applyFilters()">
-                        <label for="brand-sony">🎮 Sony</label>
-                    </div>
-                </div>
+<button onclick="clearFilters()">Filtrləri Təmizlə</button>
 
-                <div class="filter-group">
-                    <h4>Fiyat Aralığı</h4>
-                    <div class="price-range">
-                        <input type="number" id="minPrice" placeholder="Min" class="price-input" onchange="applyFilters()">
-                        <span>-</span>
-                        <input type="number" id="maxPrice" placeholder="Max" class="price-input" onchange="applyFilters()">
-                    </div>
-                </div>
+<!-- Axtarış nəticəsi başlığı -->
+<h1 class="search-title">Axtarış Nəticələri</h1>
+<div class="search-info">
+  "<span class="search-query" id="currentQuery"></span>" üçün <span id="resultCount">0</span> nəticə tapıldı
+</div>
 
-                <button onclick="clearFilters()" style="background: #95a5a6; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px;">Filtreleri Temizle</button>
-            </div>
+<label for="sortSelect">Sırala: </label>
+<option value="relevance">Əlaqəlilik</option>
+<option value="price-low">Qiymət (Aşağıdan Yuxarıya)</option>
+<option value="price-high">Qiymət (Yuxarıdan Aşağıya)</option>
+<option value="name">Ad (A-Z)</option>
+<option value="name-desc">Ad (Z-A)</option>
 
-            <!-- Content Area -->
-            <div class="content fade-in">
-                <div class="search-header">
-                    <h1 class="search-title">Arama Sonuçları</h1>
-                    <div class="search-info">
-                        "<span class="search-query" id="currentQuery"></span>" için <span id="resultCount">0</span> sonuç bulundu
-                    </div>
-                </div>
+<!-- Nəticə yoxdur bölməsi -->
+<h3>Nəticə Tapılmadı</h3>
+<p>Axtardığınız "<span id="noResultsQuery"></span>" üçün nəticə tapılmadı.</p>
+<h4>Tövsiyələr:</h4>
+<a href="telefonlar.html" class="suggestion-link">📱 Telefonlar</a>
+<a href="televizyonlar.html" class="suggestion-link">📺 Televizorlar</a>
+<a href="bilgisayarlar.html" class="suggestion-link">💻 Kompüterlər</a>
+<a href="aksesuarlar.html" class="suggestion-link">🎧 Aksesuarlar</a>
 
-                <div class="sort-section">
-                    <div>
-                        <label for="sortSelect">Sırala: </label>
-                        <select id="sortSelect" onchange="sortResults()">
-                            <option value="relevance">Relevance</option>
-                            <option value="price-low">Fiyat (Düşükten Yükseğe)</option>
-                            <option value="price-high">Fiyat (Yüksekten Düşüğe)</option>
-                            <option value="name">İsim (A-Z)</option>
-                            <option value="name-desc">İsim (Z-A)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="view-toggle">
-                        <button class="view-btn active" onclick="changeView('grid')">🔳</button>
-                        <button class="view-btn" onclick="changeView('list')">📋</button>
-                    </div>
-                </div>
-
-                <!-- Results Container -->
-                <div id="resultsContainer">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Arama yapılıyor...</p>
-                    </div>
-                </div>
-
-                <!-- No Results Template -->
-                <div id="noResults" class="no-results" style="display: none;">
-                    <div class="no-results-icon">😔</div>
-                    <h3>Sonuç Bulunamadı</h3>
-                    <p>Aradığınız "<span id="noResultsQuery"></span>" için sonuç bulunamadı.</p>
-                    <div class="suggestions">
-                        <h4>Öneriler:</h4>
-                        <div class="suggestion-links">
-                            <a href="telefonlar.html" class="suggestion-link">📱 Telefonlar</a>
-                            <a href="televizyonlar.html" class="suggestion-link">📺 Televizyonlar</a>
-                            <a href="bilgisayarlar.html" class="suggestion-link">💻 Bilgisayarlar</a>
-                            <a href="aksesuarlar.html" class="suggestion-link">🎧 Aksesuarlar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Global Variables
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
-        let currentSearchQuery = '';
-        let allProducts = [];
-        let filteredProducts = [];
-        let currentView = 'grid';
-        
-        // DataLayer initialization
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        
-        // Complete Products Database
-        const products = [
-            // Phones
-            { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa, A17 Pro Chip' },
-            { id: 'iphone15', name: 'iPhone 15', price: 39999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Dynamic Island, USB-C' },
-            { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera, Snapdragon 8 Gen 3' },
-            { id: 'samsungs24plus', name: 'Samsung Galaxy S24+', price: 42999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, 6.7" Ekran, 50MP Kamera' },
-            { id: 'samsungs24ultra', name: 'Samsung Galaxy S24 Ultra', price: 55999, category: 'phones', brand: 'samsung', image: '📱', features: '512GB, S Pen, 200MP Kamera' },
-            { id: 'samsunggalaxya54', name: 'Samsung Galaxy A54', price: 15999, category: 'phones', brand: 'samsung', image: '📱', features: '128GB, 50MP Kamera, 5000mAh' },
-            
-            // Televisions
-            { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR10, Dolby Vision' },
-            { id: 'lgtv65', name: 'LG OLED 65"', price: 85999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR10, Gaming Mode' },
-            { id: 'samsungtv55', name: 'Samsung Neo QLED 55"', price: 55999, category: 'televisions', brand: 'samsung', image: '📺', features: '4K, Quantum HDR, Smart TV' },
-            { id: 'samsungtv65', name: 'Samsung Neo QLED 65"', price: 75999, category: 'televisions', brand: 'samsung', image: '📺', features: '4K, Quantum HDR, Object Tracking Sound' },
-            { id: 'sonytv55', name: 'Sony Bravia 55"', price: 59999, category: 'televisions', brand: 'sony', image: '📺', features: '4K, X-Reality PRO, Android TV' },
-            
-            // Computers
-            { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB SSD, 18GB RAM' },
-            { id: 'macbookair', name: 'MacBook Air 13"', price: 65999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Chip, 256GB SSD, 8GB RAM' },
-            { id: 'imac', name: 'iMac 24"', price: 75999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Chip, 256GB SSD, 4.5K Display' },
-            { id: 'samsungbook', name: 'Samsung Galaxy Book3', price: 45999, category: 'computers', brand: 'samsung', image: '💻', features: 'Intel Core i7, 512GB SSD, 16GB RAM' },
-            { id: 'gamingpc', name: 'Gaming PC RTX 4070', price: 85999, category: 'computers', brand: 'custom', image: '💻', features: 'RTX 4070, Intel i7, 32GB RAM, 1TB SSD' },
-            
-            // Accessories
-            { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme, Spatial Audio' },
-            { id: 'airpodsmax', name: 'AirPods Max', price: 25999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Over-ear, Aktif Gürültü Önleme' },
-            { id: 'samsungbuds', name: 'Samsung Galaxy Buds2 Pro', price: 6999, category: 'accessories', brand: 'samsung', image: '🎧', features: '360 Audio, IPX7, 8 saat pil' },
-            { id: 'applewatch', name: 'Apple Watch Series 9', price: 19999, category: 'accessories', brand: 'apple', image: '⌚', features: 'GPS, 45mm, Sport Band' },
-            { id: 'magicmouse', name: 'Apple Magic Mouse', price: 3999, category: 'accessories', brand: 'apple', image: '🖱️', features: 'Multi-Touch Surface, Lightning' },
-            { id: 'samsungwatch', name: 'Samsung Galaxy Watch6', price: 15999, category: 'accessories', brand: 'samsung', image: '⌚', features: '44mm, GPS, Sleep Tracking' },
-            
-            // Gaming
-            { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD Blu-ray, 825GB SSD, DualSense' },
-            { id: 'ps5slim', name: 'PlayStation 5 Slim', price: 23999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Compact Design, 1TB SSD' },
-            { id: 'xboxseriesx', name: 'Xbox Series X', price: 24999, category: 'gaming', brand: 'microsoft', image: '🎮', features: '4K Gaming, 1TB SSD, Game Pass' },
-            { id: 'steamdeck', name: 'Steam Deck', price: 19999, category: 'gaming', brand: 'valve', image: '🎮', features: 'Handheld PC Gaming, 512GB' }
-        ];
-
-        // Get URL Parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        // Search Products
-        function searchProducts(query) {
-            if (!query) return [];
-            
-            const lowerQuery = query.toLowerCase();
-            return products.filter(product => {
-                return product.name.toLowerCase().includes(lowerQuery) ||
-                       product.features.toLowerCase().includes(lowerQuery) ||
-                       product.brand.toLowerCase().includes(lowerQuery) ||
-                       product.category.toLowerCase().includes(lowerQuery);
-            });
-        }
-
-        // Apply Filters
-        function applyFilters() {
-            let filtered = [...allProducts];
-            
-            // Category filters
-            const categoryFilters = Array.from(document.querySelectorAll('input[type="checkbox"][id^="cat-"]:checked'))
-                .map(cb => cb.value);
-            if (categoryFilters.length > 0) {
-                filtered = filtered.filter(product => categoryFilters.includes(product.category));
-            }
-            
-            // Brand filters
-            const brandFilters = Array.from(document.querySelectorAll('input[type="checkbox"][id^="brand-"]:checked'))
-                .map(cb => cb.value);
+<!-- Səbət -->
+<a href="sepet.html" class="cart-widget">
+  <div class="cart-count">🛒 <span id="cartCount">0</span></div>
+  <div style="font-size: 12px;">₼<span id="cartTotal">0</span></div>
+</a>
