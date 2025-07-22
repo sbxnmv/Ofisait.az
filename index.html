@@ -298,21 +298,59 @@
 
     <script>
         // Global Variables
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let cart = {};
         
         // DataLayer initialization
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         
-        // Sample Products Data
+        // Expanded Products Data
         const products = {
             featured: [
-                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanium Korpus' },
-                { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera' },
-                { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR' },
-                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Çip, 512GB' },
-                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktiv Səs-küy Aradan Qaldırma' },
-                { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD' }
+                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanium Korpus, Pro Kamera' },
+                { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera, 200MP' },
+                { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR10, Dolby Vision' },
+                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Çip, 512GB SSD, 18GB RAM' },
+                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktiv Səs-küy Aradan Qaldırma, USB-C' },
+                { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD Blu-ray, 825GB SSD' },
+                { id: 'iphone14', name: 'iPhone 14', price: 32999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Dual Kamera, A15 Bionic' },
+                { id: 'galaxywatch', name: 'Samsung Galaxy Watch 6', price: 12999, category: 'accessories', brand: 'samsung', image: '⌚', features: '44mm, GPS, Bluetooth, Health Monitoring' },
+                { id: 'sonytv65', name: 'Sony Bravia 65"', price: 75999, category: 'televisions', brand: 'sony', image: '📺', features: '4K OLED, XR Processor, Google TV' },
+                { id: 'ipadair', name: 'iPad Air 5', price: 28999, category: 'tablets', brand: 'apple', image: '📲', features: 'M1 Chip, 10.9", 256GB, WiFi' },
+                { id: 'logitechmx', name: 'Logitech MX Master 3S', price: 799, category: 'accessories', brand: 'logitech', image: '🖱️', features: 'Wireless Mouse, 8000 DPI, USB-C' },
+                { id: 'dellmonitor', name: 'Dell UltraSharp 27"', price: 18999, category: 'computers', brand: 'dell', image: '🖥️', features: '4K IPS, USB-C Hub, 95% DCI-P3' },
+                { id: 'jblspeaker', name: 'JBL Charge 5', price: 1299, category: 'accessories', brand: 'jbl', image: '🔊', features: 'Bluetooth 5.1, IP67, 20H Battery' },
+                { id: 'huaweiwatch', name: 'Huawei Watch GT 4', price: 14999, category: 'accessories', brand: 'huawei', image: '⌚', features: '46mm, 14 Days Battery, Health Tracking' },
+                { id: 'xiaomitv', name: 'Xiaomi TV A2 55"', price: 21999, category: 'televisions', brand: 'xiaomi', image: '📺', features: '4K HDR10, Android TV, Dolby Audio' },
+                { id: 'keyboard', name: 'Apple Magic Keyboard', price: 2999, category: 'accessories', brand: 'apple', image: '⌨️', features: 'Wireless, Rechargeable, Scissor Keys' }
+            ],
+            phones: [
+                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanium Korpus, Pro Kamera' },
+                { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera, 200MP' },
+                { id: 'iphone14', name: 'iPhone 14', price: 32999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Dual Kamera, A15 Bionic' },
+                { id: 'samsungs23', name: 'Samsung Galaxy S23', price: 29999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, Snapdragon 8 Gen 2' },
+                { id: 'xiaomi13', name: 'Xiaomi 13', price: 19999, category: 'phones', brand: 'xiaomi', image: '📱', features: '256GB, Leica Camera, Snapdragon 8 Gen 2' },
+                { id: 'huaweip60', name: 'Huawei P60 Pro', price: 27999, category: 'phones', brand: 'huawei', image: '📱', features: '256GB, 48MP Ultra Lighting' }
+            ],
+            computers: [
+                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Çip, 512GB SSD, 18GB RAM' },
+                { id: 'dellxps', name: 'Dell XPS 13', price: 45999, category: 'computers', brand: 'dell', image: '💻', features: 'Intel i7, 16GB RAM, 512GB SSD' },
+                { id: 'asusrog', name: 'ASUS ROG Strix G15', price: 39999, category: 'computers', brand: 'asus', image: '💻', features: 'AMD Ryzen 7, RTX 4060, 16GB RAM' },
+                { id: 'hpspectre', name: 'HP Spectre x360', price: 52999, category: 'computers', brand: 'hp', image: '💻', features: 'Intel i7, 16GB RAM, 1TB SSD, Touchscreen' }
+            ],
+            televisions: [
+                { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR10, Dolby Vision' },
+                { id: 'sonytv65', name: 'Sony Bravia 65"', price: 75999, category: 'televisions', brand: 'sony', image: '📺', features: '4K OLED, XR Processor, Google TV' },
+                { id: 'xiaomitv', name: 'Xiaomi TV A2 55"', price: 21999, category: 'televisions', brand: 'xiaomi', image: '📺', features: '4K HDR10, Android TV, Dolby Audio' },
+                { id: 'samsungtv', name: 'Samsung Neo QLED 65"', price: 85999, category: 'televisions', brand: 'samsung', image: '📺', features: '4K, Quantum HDR, Tizen OS' }
+            ],
+            accessories: [
+                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktiv Səs-küy Aradan Qaldırma, USB-C' },
+                { id: 'galaxywatch', name: 'Samsung Galaxy Watch 6', price: 12999, category: 'accessories', brand: 'samsung', image: '⌚', features: '44mm, GPS, Bluetooth, Health Monitoring' },
+                { id: 'logitechmx', name: 'Logitech MX Master 3S', price: 799, category: 'accessories', brand: 'logitech', image: '🖱️', features: 'Wireless Mouse, 8000 DPI, USB-C' },
+                { id: 'jblspeaker', name: 'JBL Charge 5', price: 1299, category: 'accessories', brand: 'jbl', image: '🔊', features: 'Bluetooth 5.1, IP67, 20H Battery' },
+                { id: 'keyboard', name: 'Apple Magic Keyboard', price: 2999, category: 'accessories', brand: 'apple', image: '⌨️', features: 'Wireless, Rechargeable, Scissor Keys' },
+                { id: 'huaweiwatch', name: 'Huawei Watch GT 4', price: 14999, category: 'accessories', brand: 'huawei', image: '⌚', features: '46mm, 14 Days Battery, Health Tracking' }
             ]
         };
 
@@ -325,202 +363,3 @@
                     event: 'search',
                     search_term: query
                 };
-                dataLayer.push(eventData);
-                gtag('event', 'search', eventData);
-                
-                // Redirect to search page with query parameter
-                window.location.href = `axtaris.html?q=${encodeURIComponent(query)}`;
-            }
-        }
-
-        // Search input event listeners
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-
-        // Load Products
-        function loadProducts(containerId, productList) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            container.innerHTML = productList.map(product => `
-                <div class="product-card" onclick="viewProduct('${product.id}')">
-                    <div class="product-image">${product.image}</div>
-                    <div class="product-info">
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-price">₼${product.price.toLocaleString()}</div>
-                        <div class="product-features">${product.features}</div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('${product.id}')">Səbətə Əlavə Et</button>
-                            <button class="btn btn-secondary" onclick="event.stopPropagation(); addToWishlist('${product.id}')">❤️</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Add to Cart
-        function addToCart(productId) {
-            const product = findProduct(productId);
-            if (!product) return;
-            
-            if (!cart[productId]) {
-                cart[productId] = { ...product, quantity: 0 };
-            }
-            cart[productId].quantity++;
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            const eventData = {
-                event: 'add_to_cart',
-                currency: 'AZN',
-                value: product.price,
-                items: [{
-                    item_id: productId,
-                    item_name: product.name,
-                    currency: 'AZN',
-                    price: product.price,
-                    quantity: 1,
-                    item_category: product.category,
-                    item_brand: product.brand
-                }]
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'add_to_cart', eventData);
-            
-            updateCartDisplay();
-            showNotification(`${product.name} səbətə əlavə edildi! 🛒`);
-        }
-
-        // View Product
-        function viewProduct(productId) {
-            const product = findProduct(productId);
-            if (!product) return;
-            
-            const eventData = {
-                event: 'view_item',
-                currency: 'AZN',
-                value: product.price,
-                items: [{
-                    item_id: productId,
-                    item_name: product.name,
-                    currency: 'AZN',
-                    price: product.price,
-                    quantity: 1,
-                    item_category: product.category,
-                    item_brand: product.brand
-                }]
-            };
-            
-            dataLayer.push(eventData);
-            gtag('event', 'view_item', eventData);
-            
-            // Redirect to product detail page
-            window.location.href = `mehsul/${productId}.html`;
-        }
-
-        // Add to Wishlist
-        function addToWishlist(productId) {
-            const product = findProduct(productId);
-            if (!product) return;
-            
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            if (!wishlist.includes(productId)) {
-                wishlist.push(productId);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                
-                const eventData = {
-                    event: 'add_to_wishlist',
-                    currency: 'AZN',
-                    value: product.price,
-                    items: [{
-                        item_id: productId,
-                        item_name: product.name,
-                        currency: 'AZN',
-                        price: product.price
-                    }]
-                };
-                
-                dataLayer.push(eventData);
-                gtag('event', 'add_to_wishlist', eventData);
-                
-                showNotification(`${product.name} sevimlilərə əlavə edildi! ❤️`);
-            } else {
-                showNotification(`${product.name} artıq sevimlilərinizə əlavə edilib! ❤️`);
-            }
-        }
-
-        // Find Product
-        function findProduct(productId) {
-            for (let category in products) {
-                const product = products[category].find(p => p.id === productId);
-                if (product) return product;
-            }
-            return null;
-        }
-
-        // Update Cart Display
-        function updateCartDisplay() {
-            let itemCount = 0;
-            let total = 0;
-            
-            for (const [id, item] of Object.entries(cart)) {
-                itemCount += item.quantity;
-                total += item.price * item.quantity;
-            }
-            
-            document.getElementById('cartCount').textContent = itemCount;
-            document.getElementById('cartTotal').textContent = total.toLocaleString();
-        }
-
-        // Show Notification
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed; top: 100px; right: 20px; background: #27ae60; color: white; 
-                padding: 15px 25px; border-radius: 10px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                animation: slideInRight 0.5s ease-out;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
-                setTimeout(() => document.body.removeChild(notification), 500);
-            }, 3000);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProducts('featured-products', products.featured);
-            updateCartDisplay();
-            
-            // Track initial page view
-            const eventData = {
-                event: 'page_view',
-                page_title: 'Ofisait.az - Əsas Səhifə',
-                page_location: window.location.href
-            };
-            dataLayer.push(eventData);
-            gtag('event', 'page_view', eventData);
-        });
-
-        // Add CSS for animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-</html>
