@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,7 +101,7 @@
         
         /* Orders */
         .order-item { background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 15px; border: 1px solid #ecf0f1; }
-        .order-header { display: flex; justify-content: between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
         .order-number { font-weight: bold; color: #2c3e50; }
         .order-date { color: #666; font-size: 14px; }
         .order-status { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
@@ -172,14 +172,14 @@
                 
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <input type="text" id="searchInput" placeholder="Məhsul axtar..." class="search-input">
                     <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
                 
                 <div class="user-actions">
-                    <a href="giris.html" class="user-btn">👤 Giriş Yap</a>
-                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
-                    <a href="favoriler.html" class="user-btn">❤️ Favoriler</a>
+                    <a href="giris.html" class="user-btn">👤 Daxil ol</a>
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Sevimlilər</a>
                     <a href="hesabim.html" class="user-btn active">⚙️ Hesabım</a>
                 </div>
             </div>
@@ -190,14 +190,14 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="index.html">🏠 Ana Səhifə</a>
                 <a href="telefonlar.html">📱 Telefonlar</a>
-                <a href="televizyonlar.html">📺 Televizyonlar</a>
-                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="televizyonlar.html">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
                 <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
-                <a href="kampanyalar.html">🔥 Kampanyalar</a>
-                <a href="destek.html">💬 Destek</a>
-                <a href="iletisim.html">📞 İletişim</a>
+                <a href="kampanyalar.html">🔥 Kampaniyalar</a>
+                <a href="destek.html">💬 Dəstək</a>
+                <a href="iletisim.html">📞 Əlaqə</a>
             </div>
         </div>
     </nav>
@@ -205,7 +205,7 @@
     <div class="container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="index.html">Ana Sayfa</a> / <span>Hesabım</span>
+            <a href="index.html">Ana Səhifə</a> / <span>Hesabım</span>
         </div>
         
         <div class="account-layout">
@@ -213,34 +213,34 @@
             <div class="account-sidebar">
                 <div class="profile-header">
                     <div class="profile-avatar">👤</div>
-                    <div class="profile-name" id="profileName">Ahmet Yılmaz</div>
-                    <div class="profile-email" id="profileEmail">ahmet@example.com</div>
+                    <div class="profile-name" id="profileName">Subhan Məmmədov</div>
+                    <div class="profile-email" id="profileEmail">subhan@example.com</div>
                 </div>
                 
                 <ul class="account-menu">
                     <li><a href="#" class="menu-item active" data-section="overview">
-                        <span class="menu-icon">📊</span> Genel Bakış
+                        <span class="menu-icon">📊</span> Ümumi Baxış
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="profile">
-                        <span class="menu-icon">👤</span> Profil Bilgileri
+                        <span class="menu-icon">👤</span> Profil Məlumatları
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="orders">
-                        <span class="menu-icon">📦</span> Siparişlerim
+                        <span class="menu-icon">📦</span> Sifarişlərim
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="addresses">
-                        <span class="menu-icon">📍</span> Adreslerim
+                        <span class="menu-icon">📍</span> Ünvanlarım
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="payment">
-                        <span class="menu-icon">💳</span> Ödeme Yöntemleri
+                        <span class="menu-icon">💳</span> Ödəniş Üsulları
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="security">
-                        <span class="menu-icon">🔐</span> Güvenlik
+                        <span class="menu-icon">🔐</span> Təhlükəsizlik
                     </a></li>
                     <li><a href="#" class="menu-item" data-section="notifications">
-                        <span class="menu-icon">🔔</span> Bildirimler
+                        <span class="menu-icon">🔔</span> Bildirişlər
                     </a></li>
                     <li><a href="#" onclick="logout()">
-                        <span class="menu-icon">🚪</span> Çıkış Yap
+                        <span class="menu-icon">🚪</span> Çıxış
                     </a></li>
                 </ul>
             </div>
@@ -249,28 +249,28 @@
             <div class="account-content">
                 <!-- Overview Section -->
                 <div id="overview" class="account-section active fade-in">
-                    <h2 class="section-title">📊 Genel Bakış</h2>
+                    <h2 class="section-title">📊 Ümumi Baxış</h2>
                     
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-number" id="totalOrders">12</div>
-                            <div class="stat-label">Toplam Sipariş</div>
+                            <div class="stat-label">Ümumi Sifariş</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" id="totalSpent">₺45.680</div>
-                            <div class="stat-label">Toplam Harcama</div>
+                            <div class="stat-number" id="totalSpent">₼1.523</div>
+                            <div class="stat-label">Ümumi Xərc</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" id="totalSaved">₺5.240</div>
-                            <div class="stat-label">Toplam Tasarruf</div>
+                            <div class="stat-number" id="totalSaved">₼175</div>
+                            <div class="stat-label">Ümumi Qənaət</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" id="memberSince">2 Yıl</div>
-                            <div class="stat-label">Üyelik Süresi</div>
+                            <div class="stat-number" id="memberSince">2 İl</div>
+                            <div class="stat-label">Üzvlük Müddəti</div>
                         </div>
                     </div>
 
-                    <h3 class="section-subtitle">Son Siparişler</h3>
+                    <h3 class="section-subtitle">Son Sifarişlər</h3>
                     <div id="recentOrders">
                         <!-- Recent orders will be loaded here -->
                     </div>
@@ -278,52 +278,52 @@
 
                 <!-- Profile Section -->
                 <div id="profile" class="account-section">
-                    <h2 class="section-title">👤 Profil Bilgileri</h2>
+                    <h2 class="section-title">👤 Profil Məlumatları</h2>
                     
                     <form id="profileForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">Ad</label>
-                                <input type="text" class="form-input" id="firstName" value="Ahmet">
+                                <input type="text" class="form-input" id="firstName" value="Subhan">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Soyad</label>
-                                <input type="text" class="form-input" id="lastName" value="Yılmaz">
+                                <input type="text" class="form-input" id="lastName" value="Məmmədov">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">E-posta</label>
-                            <input type="email" class="form-input" id="email" value="ahmet@example.com">
+                            <label class="form-label">E-poçt</label>
+                            <input type="email" class="form-input" id="email" value="subhan@example.com">
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">Telefon</label>
-                                <input type="tel" class="form-input" id="phone" value="+90 555 123 4567">
+                                <input type="tel" class="form-input" id="phone" value="+994 55 123 4567">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Doğum Tarihi</label>
-                                <input type="date" class="form-input" id="birthDate" value="1985-05-15">
+                                <label class="form-label">Doğum Tarixi</label>
+                                <input type="date" class="form-input" id="birthDate" value="1990-08-20">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Cinsiyet</label>
+                            <label class="form-label">Cins</label>
                             <select class="form-input" id="gender">
-                                <option value="male" selected>Erkek</option>
-                                <option value="female">Kadın</option>
-                                <option value="other">Diğer</option>
+                                <option value="male" selected>Kişi</option>
+                                <option value="female">Qadın</option>
+                                <option value="other">Digər</option>
                             </select>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Bilgileri Güncelle</button>
+                        <button type="submit" class="btn btn-primary">Məlumatları Yenilə</button>
                     </form>
                 </div>
 
                 <!-- Orders Section -->
                 <div id="orders" class="account-section">
-                    <h2 class="section-title">📦 Siparişlerim</h2>
+                    <h2 class="section-title">📦 Sifarişlərim</h2>
                     
                     <div id="ordersList">
                         <!-- Orders will be loaded here -->
@@ -332,10 +332,10 @@
 
                 <!-- Addresses Section -->
                 <div id="addresses" class="account-section">
-                    <h2 class="section-title">📍 Adreslerim</h2>
+                    <h2 class="section-title">📍 Ünvanlarım</h2>
                     
                     <button class="btn btn-primary" style="margin-bottom: 20px;" onclick="showAddAddressForm()">
-                        ➕ Yeni Adres Ekle
+                        ➕ Yeni Ünvan Əlavə Et
                     </button>
                     
                     <div id="addressesList">
@@ -345,75 +345,75 @@
 
                 <!-- Payment Methods Section -->
                 <div id="payment" class="account-section">
-                    <h2 class="section-title">💳 Ödeme Yöntemleri</h2>
+                    <h2 class="section-title">💳 Ödəniş Üsulları</h2>
                     
                     <div class="info-card">
-                        <h4>🔒 Güvenli Ödeme</h4>
-                        <p>Kart bilgileriniz SSL ile şifrelenir ve güvenli sunucularda saklanır.</p>
-                        <p>Hiçbir kart bilginiz sistemimizde saklanmaz.</p>
+                        <h4>🔒 Təhlükəsiz Ödəniş</h4>
+                        <p>Kart məlumatlarınız SSL ilə şifrələnir və təhlükəsiz serverlərdə saxlanılır.</p>
+                        <p>Heç bir kart məlumatınız sistemdə saxlanılmır.</p>
                     </div>
                     
-                    <button class="btn btn-primary">Kart Ekle</button>
+                    <button class="btn btn-primary">Kart Əlavə Et</button>
                 </div>
 
                 <!-- Security Section -->
                 <div id="security" class="account-section">
-                    <h2 class="section-title">🔐 Güvenlik</h2>
+                    <h2 class="section-title">🔐 Təhlükəsizlik</h2>
                     
-                    <h3 class="section-subtitle">Şifre Değiştir</h3>
+                    <h3 class="section-subtitle">Şifrəni Dəyiş</h3>
                     <form id="passwordForm">
                         <div class="form-group">
-                            <label class="form-label">Mevcut Şifre</label>
+                            <label class="form-label">Mövcud Şifrə</label>
                             <input type="password" class="form-input" id="currentPassword">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Yeni Şifre</label>
+                            <label class="form-label">Yeni Şifrə</label>
                             <input type="password" class="form-input" id="newPassword">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Yeni Şifre (Tekrar)</label>
+                            <label class="form-label">Yeni Şifrə (Təkrar)</label>
                             <input type="password" class="form-input" id="confirmPassword">
                         </div>
-                        <button type="submit" class="btn btn-primary">Şifreyi Güncelle</button>
+                        <button type="submit" class="btn btn-primary">Şifrəni Yenilə</button>
                     </form>
                     
-                    <h3 class="section-subtitle">İki Faktörlü Kimlik Doğrulama</h3>
+                    <h3 class="section-subtitle">İki Faktörlü Təsdiqlənmə</h3>
                     <div class="info-card">
-                        <h4>🛡️ Ekstra Güvenlik</h4>
-                        <p>Hesabınız için ekstra güvenlik katmanı ekleyin.</p>
-                        <button class="btn btn-secondary">Etkinleştir</button>
+                        <h4>🛡️ Əlavə Təhlükəsizlik</h4>
+                        <p>Hesabınız üçün əlavə təhlükəsizlik səviyyəsi əlavə edin.</p>
+                        <button class="btn btn-secondary">Aktivləşdir</button>
                     </div>
                 </div>
 
                 <!-- Notifications Section -->
                 <div id="notifications" class="account-section">
-                    <h2 class="section-title">🔔 Bildirim Ayarları</h2>
+                    <h2 class="section-title">🔔 Bildiriş Ayarları</h2>
                     
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div class="info-card">
-                            <h4>📧 E-posta Bildirimleri</h4>
+                            <h4>📧 E-poçt Bildirişləri</h4>
                             <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                                <input type="checkbox" checked> Sipariş durumu güncellemeleri
+                                <input type="checkbox" checked> Sifariş statusu yenilikləri
                             </label>
                             <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                                <input type="checkbox" checked> Kampanya ve fırsat bildirimleri
+                                <input type="checkbox" checked> Kampaniya və fürsət bildirişləri
                             </label>
                             <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                                <input type="checkbox"> Yeni ürün duyuruları
+                                <input type="checkbox"> Yeni məhsul elanları
                             </label>
                         </div>
                         
                         <div class="info-card">
-                            <h4>📱 SMS Bildirimleri</h4>
+                            <h4>📱 SMS Bildirişləri</h4>
                             <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                                <input type="checkbox" checked> Kargo durumu
+                                <input type="checkbox" checked> Kargo statusu
                             </label>
                             <label style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-                                <input type="checkbox"> Özel teklifler
+                                <input type="checkbox"> Xüsusi təkliflər
                             </label>
                         </div>
                         
-                        <button class="btn btn-primary">Ayarları Kaydet</button>
+                        <button class="btn btn-primary">Ayarları Saxla</button>
                     </div>
                 </div>
             </div>
@@ -422,7 +422,6 @@
 
     <script>
         // Global Variables
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
         let currentSection = 'overview';
         
         // DataLayer initialization
@@ -432,37 +431,37 @@
         // Sample user data
         const userData = {
             profile: {
-                firstName: 'Ahmet',
-                lastName: 'Yılmaz',
-                email: 'ahmet@example.com',
-                phone: '+90 555 123 4567',
-                birthDate: '1985-05-15',
+                firstName: 'Subhan',
+                lastName: 'Məmmədov',
+                email: 'subhan@example.com',
+                phone: '+994 55 123 4567',
+                birthDate: '1990-08-20',
                 gender: 'male',
                 memberSince: '2022-03-15'
             },
             stats: {
                 totalOrders: 12,
-                totalSpent: 45680,
-                totalSaved: 5240
+                totalSpent: 1523,
+                totalSaved: 175
             },
             orders: [
                 {
-                    id: 'ORD-2024-001',
+                    id: 'SIF-2024-001',
                     date: '2024-07-15',
                     status: 'delivered',
-                    total: 3599,
+                    total: 120,
                     items: [
-                        { name: 'iPhone 15 Pro Kılıfı', image: '📱', price: 299 },
-                        { name: 'Wireless Charger', image: '🔋', price: 599 }
+                        { name: 'iPhone 15 Pro Qabığı', image: '📱', price: 10 },
+                        { name: 'Simsiz Şarj Cihazı', image: '🔋', price: 20 }
                     ]
                 },
                 {
-                    id: 'ORD-2024-002',
+                    id: 'SIF-2024-002',
                     date: '2024-07-10',
                     status: 'processing',
-                    total: 15999,
+                    total: 535,
                     items: [
-                        { name: 'Samsung Galaxy Buds', image: '🎧', price: 1599 }
+                        { name: 'Samsung Galaxy Buds', image: '🎧', price: 53 }
                     ]
                 }
             ],
@@ -471,9 +470,9 @@
                     id: 1,
                     type: 'Ev',
                     isDefault: true,
-                    fullName: 'Ahmet Yılmaz',
-                    phone: '+90 555 123 4567',
-                    address: 'Nizami Rayonu, 28 May küç. 12/5',
+                    fullName: 'Subhan Məmmədov',
+                    phone: '+994 55 123 4567',
+                    address: 'Nizami rayonu, 28 May küçəsi 12/5',
                     city: 'Bakı',
                     district: 'Nizami',
                     postalCode: 'AZ1000'
@@ -482,9 +481,9 @@
                     id: 2,
                     type: 'İş',
                     isDefault: false,
-                    fullName: 'Ahmet Yılmaz',
-                    phone: '+90 555 123 4567',
-                    address: 'Yasamal Rayonu, Mərdəkan şosesi 15',
+                    fullName: 'Subhan Məmmədov',
+                    phone: '+994 55 123 4567',
+                    address: 'Yasamal rayonu, Mərdəkan şosesi 15',
                     city: 'Bakı',
                     district: 'Yasamal',
                     postalCode: 'AZ1001'
@@ -496,7 +495,7 @@
         function performSearch() {
             const query = document.getElementById('searchInput').value.trim();
             if (query) {
-                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+                window.location.href = `axtaris.html?q=${encodeURIComponent(query)}`;
             }
         }
 
@@ -509,8 +508,4 @@
             
             // Remove active class from all menu items
             document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList
+                item.
