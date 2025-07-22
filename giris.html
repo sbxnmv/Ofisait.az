@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofisait.az - Giriş Yap</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0FR937JZ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V0FR937JZ2');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        /* Search Container */
+        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
+        .search-input:focus { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .search-btn:hover { background: #e67e22; transform: translateY(-50%) scale(1.1); }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        .user-btn.active { background: rgba(255,255,255,0.4); }
+        
+        /* Navigation */
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
+        .nav a:hover { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Main Content */
+        .main-container { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 200px); padding: 40px 0; }
+        
+        /* Login Form Container */
+        .login-container { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); max-width: 450px; width: 100%; }
+        .login-header { text-align: center; margin-bottom: 30px; }
+        .login-title { font-size: 28px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .login-subtitle { color: #666; font-size: 16px; }
+        
+        /* Form Styles */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; color: #2c3e50; font-weight: 500; font-size: 14px; }
+        .form-input { width: 100%; padding: 15px; border: 2px solid #ecf0f1; border-radius: 10px; font-size: 16px; transition: all 0.3s; outline: none; }
+        .form-input:focus { border-color: #f39c12; box-shadow: 0 0 10px rgba(243, 156, 18, 0.2); }
+        .form-input.error { border-color: #e74c3c; }
+        .form-input.success { border-color: #27ae60; }
+        
+        .password-container { position: relative; }
+        .password-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; font-size: 18px; }
+        .password-toggle:hover { color: #f39c12; }
+        
+        .form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-size: 14px; }
+        .remember-me { display: flex; align-items: center; gap: 8px; }
+        .remember-me input[type="checkbox"] { width: 18px; height: 18px; accent-color: #f39c12; }
+        .forgot-password { color: #f39c12; text-decoration: none; transition: all 0.3s; }
+        .forgot-password:hover { color: #e67e22; text-decoration: underline; }
+        
+        .login-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3); }
+        .login-btn:disabled { background: #95a5a6; cursor: not-allowed; transform: none; }
+        
+        .divider { text-align: center; margin: 25px 0; position: relative; color: #666; }
+        .divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #ecf0f1; }
+        .divider span { background: white; padding: 0 15px; }
+        
+        .social-login { display: flex; gap: 15px; margin-bottom: 25px; }
+        .social-btn { flex: 1; padding: 12px; border: 2px solid #ecf0f1; border-radius: 10px; cursor: pointer; text-align: center; transition: all 0.3s; text-decoration: none; color: #2c3e50; font-weight: 500; }
+        .social-btn:hover { border-color: #f39c12; transform: translateY(-2px); }
+        .social-btn.google:hover { background: #db4437; color: white; border-color: #db4437; }
+        .social-btn.facebook:hover { background: #3b5998; color: white; border-color: #3b5998; }
+        
+        .signup-link { text-align: center; color: #666; }
+        .signup-link a { color: #f39c12; text-decoration: none; font-weight: 600; }
+        .signup-link a:hover { color: #e67e22; text-decoration: underline; }
+        
+        /* Error Messages */
+        .error-message { color: #e74c3c; font-size: 14px; margin-top: 5px; display: none; }
+        .success-message { color: #27ae60; font-size: 14px; margin-top: 5px; display: none; }
+        
+        /* Loading Animation */
+        .loading { display: none; }
+        .spinner { border: 2px solid #f3f3f3; border-top: 2px solid #f39c12; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; margin-right: 10px; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Cart Widget */
+        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .cart-widget:hover { transform: scale(1.05); background: #d35400; color: white; }
+        .cart-count { font-weight: bold; font-size: 18px; }
+        
+        /* Breadcrumb */
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            .nav-content { justify-content: center; }
+            .search-container { min-width: auto; width: 100%; }
+            .user-actions { justify-content: center; flex-wrap: wrap; }
+            .login-container { margin: 20px; padding: 30px; }
+            .social-login { flex-direction: column; }
+        }
+        
+        /* Animation */
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn active">👤 Giriş Yap</a>
+                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Favoriler</a>
+                    <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html">📺 Televizyonlar</a>
+                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html">🔥 Kampanyalar</a>
+                <a href="destek.html">💬 Destek</a>
+                <a href="iletisim.html">📞 İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Widget -->
+    <a href="sepet.html" class="cart-widget">
+        <div class="cart-count">🛒 <span id="cartCount">0</span></div>
+        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+    </a>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Ana Sayfa</a> > <span>Giriş Yap</span>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-container">
+            <div class="login-container fade-in">
+                <div class="login-header">
+                    <h1 class="login-title">Hoş Geldiniz! 👋</h1>
+                    <p class="login-subtitle">Hesabınıza giriş yapın ve alışverişe başlayın</p>
+                </div>
+                
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="email" class="form-label">📧 E-posta Adresi</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="ornek@email.com" required>
+                        <div class="error-message" id="emailError">Geçerli bir e-posta adresi giriniz.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">🔒 Şifre</label>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Şifrenizi giriniz" required>
+                            <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                        </div>
+                        <div class="error-message" id="passwordError">Şifre en az 6 karakter olmalıdır.</div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Beni hatırla</label>
+                        </div>
+                        <a href="sifremi-unuttum.html" class="forgot-password">Şifremi unuttum</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn" id="loginBtn">
+                        <span class="loading">
+                            <span class="spinner"></span>
+                            Giriş yapılıyor...
+                        </span>
+                        <span class="btn-text">Giriş Yap</span>
+                    </button>
+                </form>
+                
+                <div class="divider">
+                    <span>veya</span>
+                </div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn google" onclick="loginWithGoogle()">
+                        🔍 Google ile Giriş
+                    </a>
+                    <a href="#" class="social-btn facebook" onclick="loginWithFacebook()">
+                        📘 Facebook ile Giriş
+                    </a>
+                </div>
+                
+                <div class="signup-link">
+                    Hesabınız yok mu? <a href="kayit.html">Hemen kayıt olun</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        
+        // DataLayer initialization
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                const eventData = {
+                    event: 'search',
+                    search_term: query
+                };
+                dataLayer.push(eventData);
+                gtag('event', 'search', eventData);
+                
+                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Search input event listeners
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Password Toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // Form Validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateForm() {
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            
+            let isValid = true;
+            
+            // Reset styles
+            email.classList.remove('error', 'success');
+            password.classList.remove('error', 'success');
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            
+            // Email validation
+            if (!email.value.trim()) {
+                email.classList.add('error');
+                emailError.textContent = 'E-posta adresi gereklidir.';
+                emailError.style.display = 'block';
+                isValid = false;
+            } else if (!validateEmail(email.value)) {
+                email.classList.add('error');
+                emailError.textContent = 'Geçerli bir e-posta adresi giriniz.';
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                email.classList.add('success');
+            }
+            
+            // Password validation
+            if (!password.value.trim()) {
+                password.classList.add('error');
+                passwordError.textContent = 'Şifre gereklidir.';
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else if (password.value.length < 6) {
+                password.classList.add('error');
+                passwordError.textContent = 'Şifre en az 6 karakter olmalıdır.';
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                password.classList.add('success');
+            }
+            
+            return isValid;
+        }
+
+        // Login Form Submit
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = loginBtn.querySelector('.loading');
+            const btnText = loginBtn.querySelector('.btn-text');
+            
+            // Show loading state
+            loginBtn.disabled = true;
+            loading.style.display = 'inline';
+            btnText.style.display = 'none';
+            
+            // Simulate login process
+            setTimeout(() => {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+                
+                // Track login event
+                const eventData = {
+                    event: 'login',
+                    method: 'email',
+                    user_id: email
+                };
+                dataLayer.push(eventData);
+                gtag('event', 'login', eventData);
+                
+                // Store user session
+                const userSession = {
+                    email: email,
+                    loginTime: new Date().toISOString(),
+                    remember: remember
+                };
+                
+                if (remember) {
+                    localStorage.setItem('userSession', JSON.stringify(userSession));
+                } else {
+                    sessionStorage.setItem('userSession', JSON.stringify(userSession));
+                }
+                
+                // Show success message
+                showNotification('Giriş başarılı! Yönlendiriliyorsunuz... ✅', 'success');
+                
+                // Redirect after success
+                setTimeout(() => {
+                    const returnUrl = new URLSearchParams(window.location.search).get('return') || 'index.html';
+                    window.location.href = returnUrl;
+                }, 2000);
+                
+            }, 2000);
+        });
+
+        // Social Login Functions
+        function loginWithGoogle() {
+            const eventData = {
+                event: 'login',
+                method: 'google'
+            };
+            dataLayer.push(eventData);
+            gtag('event', 'login', eventData);
+            
+            showNotification('Google girişi geliştirme aşamasında... 🚧', 'info');
+        }
+
+        function loginWithFacebook() {
+            const eventData = {
+                event: 'login',
+                method: 'facebook'
+            };
+            dataLayer.push(eventData);
+            gtag('event', 'login', eventData);
+            
+            showNotification('Facebook girişi geliştirme aşamasında... 🚧', 'info');
+        }
+
+        // Update Cart Display
+        function updateCartDisplay() {
+            let itemCount = 0;
+            let total = 0;
+            
+            for (const [id, item] of Object.entries(cart)) {
+                itemCount += item.quantity;
+                total += item.price * item.quantity;
+            }
+            
+            document.getElementById('cartCount').textContent = itemCount;
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+        }
+
+        // Show Notification
+        function showNotification(message, type = 'success') {
+            const colors = {
+                success: '#27ae60',
+                error: '#e74c3c',
+                info: '#3498db',
+                warning: '#f39c12'
+            };
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 100px; right: 20px; background: ${colors[type]}; color: white; 
+                padding: 15px 25px; border-radius: 10px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideInRight 0.5s ease-out; max-width: 300px;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 500);
+            }, 4000);
+        }
+
+        // Real-time validation
+        document.getElementById('email').addEventListener('blur', function() {
+            if (this.value.trim()) {
+                validateForm();
+            }
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            if (this.value.trim()) {
+                validateForm();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            
+            // Check if user is already logged in
+            const userSession = localStorage.getItem('userSession') || sessionStorage.getItem('userSession');
+            if (userSession) {
+                const returnUrl = new URLSearchParams(window.location.search).get('return') || 'hesabim.html';
+                showNotification('Zaten giriş yapmışsınız! Yönlendiriliyorsunuz...', 'info');
+                setTimeout(() => {
+                    window.location.href = returnUrl;
+                }, 2000);
+                return;
+            }
+            
+            // Track page view
+            const eventData = {
+                event: 'page_view',
+                page_title: 'Ofisait.az - Giriş Yap',
+                page_location: window.location.href
+            };
+            dataLayer.push(eventData);
+            gtag('event', 'page_view', eventData);
+            
+            // Focus on email input
+            document.getElementById('email').focus();
+        });
+
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
