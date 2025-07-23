@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksesuarlar - Ofisait.az</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; text-decoration: none; color: white; }
+        
+        .search-container { flex-grow: 1; max-width: 500px; position: relative; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        
+        .user-actions { display: flex; gap: 15px; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); color: white; }
+        
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; font-weight: 500; }
+        .nav a:hover, .nav a.active { background: #e67e22; }
+        
+        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; z-index: 1000; text-decoration: none; }
+        .cart-widget:hover { background: #d35400; color: white; }
+        
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin: 20px 0; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        
+        .content { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 25px 0; }
+        .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; cursor: pointer; border: 1px solid #eee; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .product-image { height: 180px; background: linear-gradient(45deg, #f0f2f5, #e9ecef); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+        .product-info { padding: 20px; }
+        .product-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #2c3e50; }
+        .product-price { font-size: 20px; font-weight: bold; color: #e67e22; margin-bottom: 10px; }
+        .product-features { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .product-actions { display: flex; gap: 10px; }
+        .btn { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s; }
+        .btn-primary { background: #f39c12; color: white; }
+        .btn-primary:hover { background: #e67e22; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            .search-container { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Aksesuar axtar..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn">👤 Giriş Et</a>
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Sevimlilər</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Səhifə</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
+                <a href="aksesuarlar.html" class="active">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html">🔥 Kampaniyalar</a>
+            </div>
+        </div>
+    </nav>
+
+    <a href="sepet.html" class="cart-widget">
+        <div>🛒 <span id="cartCount">0</span></div>
+        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+    </a>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Ana Səhifə</a> > <span>Aksesuarlar</span>
+        </div>
+        
+        <div class="content">
+            <h1>🎧 Aksesuarlar</h1>
+            <p style="margin: 15px 0; color: #666;">Texnoloji aksesuarlarınızı kəşf edin</p>
+            
+            <div class="product-grid" id="accessories-grid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        
+        const accessories = [
+            { id: 'airpods-pro', name: 'AirPods Pro 2', price: 8999, brand: 'apple', image: '🎧', features: 'Aktiv Gürültü Önleme, USB-C' },
+            { id: 'wireless-charger', name: 'Simsiz Şarj Cihazı', price: 1299, brand: 'samsung', image: '🔋', features: '15W Hızlı Şarj, Qi Uyumlu' },
+            { id: 'bluetooth-speaker', name: 'Bluetooth Hoparlör', price: 2499, brand: 'jbl', image: '🔊', features: 'Su Keçirmez, 12 Saat Batarya' },
+            { id: 'gaming-mouse', name: 'Gaming Siçan', price: 899, brand: 'logitech', image: '🖱️', features: 'RGB Işıklandırma, 6400 DPI' },
+            { id: 'phone-case', name: 'Telefon Qılıfı', price: 399, brand: 'generic', image: '📱', features: 'Darbe Dayanıklı, Şeffaf' },
+            { id: 'usb-cable', name: 'USB-C Kabel', price: 199, brand: 'anker', image: '🔌', features: '2m Uzunluq, Hızlı Şarj' }
+        ];
+
+        function loadAccessories() {
+            const container = document.getElementById('accessories-grid');
+            container.innerHTML = accessories.map(item => `
+                <div class="product-card" onclick="viewProduct('${item.id}')">
+                    <div class="product-image">${item.image}</div>
+                    <div class="product-info">
+                        <div class="product-title">${item.name}</div>
+                        <div class="product-price">₺${item.price.toLocaleString()}</div>
+                        <div class="product-features">${item.features}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('${item.id}')">Səbətə At</button>
+                            <button class="btn btn-secondary" onclick="event.stopPropagation(); addToWishlist('${item.id}')">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId) {
+            const product = accessories.find(p => p.id === productId);
+            if (!product) return;
+            
+            if (!cart[productId]) {
+                cart[productId] = { ...product, quantity: 0 };
+            }
+            cart[productId].quantity++;
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+            showNotification(`${product.name} səbətə əlavə edildi! 🛒`);
+        }
+
+        function addToWishlist(productId) {
+            const product = accessories.find(p => p.id === productId);
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                showNotification(`${product.name} sevimlilərinizə əlavə edildi! ❤️`);
+            }
+        }
+
+        function viewProduct(productId) {
+            window.location.href = `urun/${productId}.html`;
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        function updateCartDisplay() {
+            let itemCount = 0;
+            let total = 0;
+            
+            for (const [id, item] of Object.entries(cart)) {
+                itemCount += item.quantity;
+                total += item.price * item.quantity;
+            }
+            
+            document.getElementById('cartCount').textContent = itemCount;
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 100px; right: 20px; background: #27ae60; color: white; 
+                padding: 15px 25px; border-radius: 10px; z-index: 9999;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => document.body.removeChild(notification), 3000);
+        }
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAccessories();
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>
