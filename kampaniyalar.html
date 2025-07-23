@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampanyalar - Ofisait.az</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        
+        /* Navigation */
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
+        .nav a:hover, .nav a.active { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Main Layout */
+        .main-layout { display: grid; grid-template-columns: 1fr; gap: 25px; margin: 25px 0; }
+        .content { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Breadcrumb */
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        
+        /* Campaign Cards */
+        .campaign-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 25px 0; }
+        .campaign-card { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3); transition: all 0.3s; position: relative; }
+        .campaign-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(231, 76, 60, 0.4); }
+        
+        .campaign-header { padding: 20px; text-align: center; }
+        .campaign-badge { background: #f39c12; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
+        .campaign-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .campaign-subtitle { opacity: 0.9; font-size: 16px; }
+        
+        .campaign-content { padding: 0 20px 20px; }
+        .discount-amount { font-size: 48px; font-weight: bold; text-align: center; margin: 20px 0; }
+        .campaign-details { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .campaign-timer { text-align: center; font-weight: bold; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; }
+        
+        .btn-campaign { background: #f39c12; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; width: 100%; margin-top: 15px; }
+        .btn-campaign:hover { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Special Offers */
+        .special-offer { background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); }
+        .flash-sale { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+        .bundle-deal { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        
+        /* Cart Widget */
+        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .cart-widget:hover { transform: scale(1.05); background: #d35400; color: white; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .campaign-grid { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; gap: 15px; }
+            .search-container { min-width: auto; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <div class="search-container">
+                    <input type="text" placeholder="Məhsul axtar..." class="search-input">
+                    <button class="search-btn">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn">👤 Giriş Et</a>
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Sevimlilər</a>
+                    <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Səhifə</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
+                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html" class="active">🔥 Kampaniyalar</a>
+                <a href="destek.html">💬 Dəstək</a>
+                <a href="iletisim.html">📞 Əlaqə</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Widget -->
+    <a href="sepet.html" class="cart-widget">
+        <div>🛒 <span id="cartCount">0</span></div>
+        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+    </a>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Ana Səhifə</a> > Kampaniyalar
+        </div>
+        
+        <div class="main-layout">
+            <div class="content">
+                <h1>🔥 Aktiv Kampaniyalar</h1>
+                <p style="margin: 15px 0; color: #666;">Ən yaxşı endirimlər və xüsusi təkliflər burada!</p>
+                
+                <div class="campaign-grid">
+                    <div class="campaign-card flash-sale">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">FLASH SALE</span>
+                            <div class="campaign-title">Saat Məhdudiyyəti</div>
+                            <div class="campaign-subtitle">Yalnız 24 saat ərzində</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">50% OFF</div>
+                            <div class="campaign-details">
+                                📱 iPhone və Samsung modelləri<br>
+                                📺 Smart TV-lər<br>
+                                💻 MacBook seriyası
+                            </div>
+                            <div class="campaign-timer">⏰ 14:23:45 qalıb</div>
+                            <button class="btn-campaign">İndi Al</button>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card special-offer">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">ÖZEL TEKLİF</span>
+                            <div class="campaign-title">Həftə Sonu Endirimi</div>
+                            <div class="campaign-subtitle">Cümə-Şənbə-Bazar</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">30% OFF</div>
+                            <div class="campaign-details">
+                                🎧 Bütün aksesuarlar<br>
+                                ⌚ Smart saatlar<br>
+                                🎮 Oyun konsolları
+                            </div>
+                            <div class="campaign-timer">Bu həftə sonu</div>
+                            <button class="btn-campaign">Kateqoriyaya Get</button>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card bundle-deal">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">PAKET FİRSATI</span>
+                            <div class="campaign-title">2 Al 1 Ödə</div>
+                            <div class="campaign-subtitle">Seçilmiş məhsullarda</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">2+1</div>
+                            <div class="campaign-details">
+                                🔌 Şarj cihazları<br>
+                                📱 Telefon qabları<br>
+                                🎧 Qulaqlıqlar
+                            </div>
+                            <div class="campaign-timer">Stok bitənə qədər</div>
+                            <button class="btn-campaign">Məhsulları Gör</button>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">YENİ MÜŞTERİ</span>
+                            <div class="campaign-title">İlk Alış Endirimi</div>
+                            <div class="campaign-subtitle">Yeni üzvlər üçün</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">25% OFF</div>
+                            <div class="campaign-details">
+                                ✨ İlk sifarişinizdə<br>
+                                📦 Pulsuz çatdırılma<br>
+                                🎁 Hədiyyə qablaşdırma
+                            </div>
+                            <div class="campaign-timer">Qeydiyyatdan sonra</div>
+                            <button class="btn-campaign">Qeydiyyatdan Keç</button>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card special-offer">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">ÖZEL GÜNLƏR</span>
+                            <div class="campaign-title">Doğum Günü Kampaniyası</div>
+                            <div class="campaign-subtitle">Doğum ayınızda</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">40% OFF</div>
+                            <div class="campaign-details">
+                                🎂 Doğum ayı xüsusi endirimi<br>
+                                🎁 Sürpriz hədiyyə<br>
+                                📧 Email bildirişi
+                            </div>
+                            <div class="campaign-timer">Ay boyu keçərli</div>
+                            <button class="btn-campaign">Profili Tamamla</button>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card flash-sale">
+                        <div class="campaign-header">
+                            <span class="campaign-badge">STOK TEMİZLİĞİ</span>
+                            <div class="campaign-title">Son Şans Endirimi</div>
+                            <div class="campaign-subtitle">Məhdud sayda</div>
+                        </div>
+                        <div class="campaign-content">
+                            <div class="discount-amount">70% OFF</div>
+                            <div class="campaign-details">
+                                📱 Keçən il modellər<br>
+                                💻 Display nümunələr<br>
+                                🎧 Son ədədlər
+                            </div>
+                            <div class="campaign-timer">Bitənə qədər</div>
+                            <button class="btn-campaign">Şans Qaçırma</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        
+        function updateCartDisplay() {
+            let itemCount = 0;
+            let total = 0;
+            
+            for (const [id, item] of Object.entries(cart)) {
+                itemCount += item.quantity;
+                total += item.price * item.quantity;
+            }
+            
+            document.getElementById('cartCount').textContent = itemCount;
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>
