@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Televizyonlar - Ofisait.az</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        .search-container { position: relative; flex-grow: 1; max-width: 500px; min-width: 300px; }
+        .search-input { width: 100%; padding: 12px 50px 12px 15px; border: none; border-radius: 25px; font-size: 16px; outline: none; transition: all 0.3s; }
+        .search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #f39c12; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        
+        /* Navigation */
+        .nav { background: #d35400; padding: 12px 0; }
+        .nav-content { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: white; padding: 10px 15px; border-radius: 25px; transition: all 0.3s; font-weight: 500; }
+        .nav a:hover, .nav a.active { background: #e67e22; transform: translateY(-2px); }
+        
+        /* Breadcrumb */
+        .breadcrumb { background: #ecf0f1; padding: 12px 20px; border-radius: 10px; margin: 20px 0; }
+        .breadcrumb a { text-decoration: none; color: #f39c12; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        
+        /* Main Content */
+        .main-content { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        
+        /* Filter Section */
+        .filter-section { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; }
+        .filter-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .filter-group { display: flex; flex-direction: column; gap: 5px; }
+        .filter-group label { font-weight: 500; color: #2c3e50; }
+        .filter-group select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; }
+        
+        /* Product Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin: 25px 0; }
+        .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .product-image { height: 200px; background: linear-gradient(45deg, #f0f2f5, #e9ecef); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+        .product-info { padding: 20px; }
+        .product-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #2c3e50; }
+        .product-price { font-size: 24px; font-weight: bold; color: #e67e22; margin-bottom: 10px; }
+        .product-features { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.4; }
+        .product-actions { display: flex; gap: 10px; }
+        .btn { padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s; }
+        .btn-primary { background: #f39c12; color: white; }
+        .btn-primary:hover { background: #e67e22; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        
+        /* Cart Widget */
+        .cart-widget { position: fixed; top: 20px; right: 20px; background: #e67e22; color: white; padding: 15px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+        .cart-widget:hover { transform: scale(1.05); background: #d35400; color: white; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .header-content { flex-direction: column; gap: 15px; }
+            .search-container { min-width: auto; width: 100%; }
+            .filter-row { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Televizor axtar..." class="search-input">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="giris.html" class="user-btn">👤 Giriş Et</a>  
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Sevimlilər</a>
+                    <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">🏠 Ana Səhifə</a>
+                <a href="telefonlar.html">📱 Telefonlar</a>
+                <a href="televizyonlar.html" class="active">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
+                <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
+                <a href="kampanyalar.html">🔥 Kampaniyalar</a>
+                <a href="destek.html">💬 Dəstək</a>
+                <a href="iletisim.html">📞 Əlaqə</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Widget -->
+    <a href="sepet.html" class="cart-widget">
+        <div>🛒 <span id="cartCount">0</span></div>
+        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+    </a>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Ana Səhifə</a> > <span>Televizorlar</span>
+        </div>
+        
+        <div class="main-content">
+            <h1>📺 Televizorlar</h1>
+            <p style="margin: 15px 0; color: #666;">Ən yeni və keyfiyyətli televizorları kəşf edin. 4K, OLED, QLED və daha çox texnologiya.</p>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Marka:</label>
+                        <select id="brandFilter">
+                            <option value="">Bütün markalar</option>
+                            <option value="samsung">Samsung</option>
+                            <option value="lg">LG</option>
+                            <option value="sony">Sony</option>
+                            <option value="philips">Philips</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Ölçü:</label>
+                        <select id="sizeFilter">
+                            <option value="">Bütün ölçülər</option>
+                            <option value="32">32"</option>
+                            <option value="43">43"</option>
+                            <option value="55">55"</option>
+                            <option value="65">65"</option>
+                            <option value="75">75"</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Qiymət:</label>
+                        <select id="priceFilter">
+                            <option value="">Bütün qiymətlər</option>
+                            <option value="0-2000">₺0 - ₺2000</option>
+                            <option value="2000-5000">₺2000 - ₺5000</option>
+                            <option value="5000-10000">₺5000 - ₺10000</option>
+                            <option value="10000+">₺10000+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="television-products">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        
+        // Television Products Data
+        const televisions = [
+            { 
+                id: 'samsung-55-qled', 
+                name: 'Samsung 55" QLED 4K', 
+                price: 4299, 
+                brand: 'samsung', 
+                size: '55', 
+                image: '📺', 
+                features: '4K Ultra HD, Quantum Dot, Smart TV, HDR10+' 
+            },
+            { 
+                id: 'lg-65-oled', 
+                name: 'LG 65" OLED C3', 
+                price: 8999, 
+                brand: 'lg', 
+                size: '65', 
+                image: '📺', 
+                features: '4K OLED, webOS 23, Dolby Vision, α9 AI Processor' 
+            },
+            { 
+                id: 'sony-43-bravia', 
+                name: 'Sony 43" BRAVIA XR', 
+                price: 3599, 
+                brand: 'sony', 
+                size: '43', 
+                image: '📺', 
+                features: '4K HDR, Google TV, XR Cognitive Processor' 
+            },
+            { 
+                id: 'samsung-75-neo', 
+                name: 'Samsung 75" Neo QLED', 
+                price: 12999, 
+                brand: 'samsung', 
+                size: '75', 
+                image: '📺', 
+                features: '8K Neo QLED, Quantum Mini LED, Smart Hub' 
+            },
+            { 
+                id: 'lg-32-smart', 
+                name: 'LG 32" Smart LED', 
+                price: 1899, 
+                brand: 'lg', 
+                size: '32', 
+                image: '📺', 
+                features: 'Full HD, Smart TV, webOS, HDR' 
+            },
+            { 
+                id: 'philips-55-ambilight', 
+                name: 'Philips 55" Ambilight', 
+                price: 5599, 
+                brand: 'philips', 
+                size: '55', 
+                image: '📺', 
+                features: '4K UHD, Ambilight, Android TV, P5 Perfect Picture' 
+            },
+            { 
+                id: 'sony-65-master', 
+                name: 'Sony 65" Master Series', 
+                price: 15999, 
+                brand: 'sony', 
+                size: '65', 
+                image: '📺', 
+                features: '4K OLED, XR OLED Contrast Pro, Acoustic Surface Audio+' 
+            },
+            { 
+                id: 'samsung-43-crystal', 
+                name: 'Samsung 43" Crystal UHD', 
+                price: 2699, 
+                brand: 'samsung', 
+                size: '43', 
+                image: '📺', 
+                features: '4K Crystal UHD, Crystal 4K Processor, Smart TV' 
+            }
+        ];
+
+        // Load Products
+        function loadProducts(productList = televisions) {
+            const container = document.getElementById('television-products');
+            if (!container) return;
+            
+            container.innerHTML = productList.map(product => `
+                <div class="product-card" onclick="viewProduct('${product.id}')">
+                    <div class="product-image">${product.image}</div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-price">₺${product.price.toLocaleString()}</div>
+                        <div class="product-features">${product.features}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('${product.id}')">Səbətə Əlavə Et</button>
+                            <button class="btn btn-secondary" onclick="event.stopPropagation(); addToWishlist('${product.id}')">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Products
+        function filterProducts() {
+            const brand = document.getElementById('brandFilter').value;
+            const size = document.getElementById('sizeFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            
+            let filteredProducts = televisions.filter(product => {
+                let matches = true;
+                
+                if (brand && product.brand !== brand) matches = false;
+                if (size && product.size !== size) matches = false;
+                
+                if (priceRange) {
+                    if (priceRange === '0-2000' && product.price > 2000) matches = false;
+                    if (priceRange === '2000-5000' && (product.price < 2000 || product.price > 5000)) matches = false;
+                    if (priceRange === '5000-10000' && (product.price < 5000 || product.price > 10000)) matches = false;
+                    if (priceRange === '10000+' && product.price < 10000) matches = false;
+                }
+                
+                return matches;
+            });
+            
+            loadProducts(filteredProducts);
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = televisions.find(p => p.id === productId);
+            if (!product) return;
+            
+            if (!cart[productId]) {
+                cart[productId] = { ...product, quantity: 0 };
+            }
+            cart[productId].quantity++;
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+            showNotification(`${product.name} səbətə əlavə edildi! 🛒`);
+        }
+
+        // Add to Wishlist
+        function addToWishlist(productId) {
+            const product = televisions.find(p => p.id === productId);
+            if (!product) return;
+            
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                showNotification(`${product.name} sevimlilərinizə əlavə edildi! ❤️`);
+            } else {
+                showNotification(`${product.name} artıq sevimliləriniz arasında! ❤️`);
+            }
+        }
+
+        // View Product
+        function viewProduct(productId) {
+            window.location.href = `urun/${productId}.html`;
+        }
+
+        // Update Cart Display
+        function updateCartDisplay() {
+            let itemCount = 0;
+            let total = 0;
+            
+            for (const [id, item] of Object.entries(cart)) {
+                itemCount += item.quantity;
+                total += item.price * item.quantity;
+            }
+            
+            document.getElementById('cartCount').textContent = itemCount;
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 100px; right: 20px; background: #27ae60; color: white; 
+                padding: 15px 25px; border-radius: 10px; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideInRight 0.5s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-in forwards';
+                setTimeout(() => document.body.removeChild(notification), 500);
+            }, 3000);
+        }
+
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                window.location.href = `arama.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartDisplay();
+            
+            // Add filter event listeners
+            document.getElementById('brandFilter').addEventListener('change', filterProducts);
+            document.getElementById('sizeFilter').addEventListener('change', filterProducts);
+            document.getElementById('priceFilter').addEventListener('change', filterProducts);
+            
+            // Search input event
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
