@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofisait.az - Qeydiyyat</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV6QDRPK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0FR937JZ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V0FR937JZ2');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; flex-shrink: 0; text-decoration: none; color: white; }
+        
+        .user-actions { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+        .user-btn { background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .user-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); color: white; }
+        
+        /* Main Registration Form */
+        .registration-container { display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px; }
+        .registration-form { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 500px; width: 100%; backdrop-filter: blur(10px); }
+        
+        .form-header { text-align: center; margin-bottom: 30px; }
+        .form-header h1 { color: #2c3e50; font-size: 28px; margin-bottom: 10px; }
+        .form-header p { color: #666; font-size: 16px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #2c3e50; font-weight: 500; font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 10px rgba(255, 107, 53, 0.2); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; }
+        .checkbox-group input[type="checkbox"] { margin-top: 4px; }
+        .checkbox-group label { margin-bottom: 0; font-size: 14px; line-height: 1.4; }
+        .checkbox-group a { color: #ff6b35; text-decoration: none; }
+        .checkbox-group a:hover { text-decoration: underline; }
+        
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3); }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        
+        .form-footer { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        .form-footer a { color: #ff6b35; text-decoration: none; font-weight: 500; }
+        .form-footer a:hover { text-decoration: underline; }
+        
+        .error-message { color: #e74c3c; font-size: 14px; margin-top: 5px; display: none; }
+        .success-message { background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #c3e6cb; display: none; }
+        
+        /* Loading Animation */
+        .loading { display: none; text-align: center; }
+        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #ff6b35; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .registration-form { margin: 20px; padding: 30px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .header-content { flex-direction: column; gap: 15px; }
+        }
+        
+        /* Animation */
+        .fade-in { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV6QDRPK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">🏢 Ofisait.az</a>
+                
+                <div class="user-actions">
+                    <a href="index.html" class="user-btn">🏠 Ana Səhifə</a>
+                    <a href="giris.html" class="user-btn">👤 Giriş Et</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Container -->
+    <div class="registration-container">
+        <div class="registration-form fade-in">
+            <div class="form-header">
+                <h1>🚀 Qeydiyyat</h1>
+                <p>Ofisait.az ailəsinə qoşulun və xüsusi təkliflərdən yararlanın!</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ✅ Qeydiyyat uğurla tamamlandı! Ana səhifəyə yönləndirilirsiniz...
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">👤 Ad *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message" id="firstNameError">Ad daxil etməlisiniz</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">👥 Soyad *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message" id="lastNameError">Soyad daxil etməlisiniz</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">📧 E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Düzgün e-mail ünvanı daxil edin</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">📱 Telefon Nömrəsi *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+994 XX XXX XX XX" required>
+                    <div class="error-message" id="phoneError">Telefon nömrəsi daxil etməlisiniz</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">🔒 Şifrə *</label>
+                        <input type="password" id="password" name="password" required minlength="6">
+                        <div class="error-message" id="passwordError">Şifrə ən azı 6 simvol olmalıdır</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">🔐 Şifrəni Təkrarla *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <div class="error-message" id="confirmPasswordError">Şifrələr eyni deyil</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">🎂 Doğum Tarixi</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">⚥ Cinsi</label>
+                    <select id="gender" name="gender">
+                        <option value="">Seçin</option>
+                        <option value="male">Kişi</option>
+                        <option value="female">Qadın</option>
+                        <option value="other">Digər</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        <a href="kullanim-sartlari.html" target="_blank">İstifadə şərtləri</a> və 
+                        <a href="gizlilik-politikasi.html" target="_blank">Gizlilik siyasəti</a>ni oxudum və qəbul edirəm *
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">
+                        📬 Kampanya və xüsusi təkliflər haqqında e-mail bildirişləri almaq istəyirəm
+                    </label>
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Qeydiyyat edilir...</p>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    🎯 Qeydiyyatı Tamamla
+                </button>
+            </form>
+
+            <div class="form-footer">
+                <p>Artıq hesabınız var? <a href="giris.html">🔑 Giriş Et</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form validation and submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                submitRegistration();
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            // Validate required fields
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            
+            if (!firstName) {
+                showError('firstNameError', 'Ad daxil etməlisiniz');
+                isValid = false;
+            }
+            
+            if (!lastName) {
+                showError('lastNameError', 'Soyad daxil etməlisiniz');
+                isValid = false;
+            }
+            
+            if (!email || !isValidEmail(email)) {
+                showError('emailError', 'Düzgün e-mail ünvanı daxil edin');
+                isValid = false;
+            }
+            
+            if (!phone) {
+                showError('phoneError', 'Telefon nömrəsi daxil etməlisiniz');
+                isValid = false;
+            }
+            
+            if (password.length < 6) {
+                showError('passwordError', 'Şifrə ən azı 6 simvol olmalıdır');
+                isValid = false;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('confirmPasswordError', 'Şifrələr eyni deyil');
+                isValid = false;
+            }
+            
+            if (!terms) {
+                alert('İstifadə şərtlərini qəbul etməlisiniz');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function submitRegistration() {
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const form = document.getElementById('registrationForm');
+            
+            // Show loading
+            submitBtn.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Get form data
+            const formData = new FormData(form);
+            const userData = {
+                firstName: formData.get('firstName').trim(),
+                lastName: formData.get('lastName').trim(),
+                email: formData.get('email').trim(),
+                phone: formData.get('phone').trim(),
+                birthDate: formData.get('birthDate'),
+                gender: formData.get('gender'),
+                newsletter: formData.get('newsletter') === 'on',
+                registrationDate: new Date().toISOString()
+            };
+            
+            // Save user to localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check if email already exists
+            if (users.some(user => user.email === userData.email)) {
+                loading.style.display = 'none';
+                submitBtn.style.display = 'block';
+                showError('emailError', 'Bu e-mail ünvanı artıq qeydiyyatdan keçib');
+                return;
+            }
+            
+            // Add user to list
+            users.push(userData);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Set logged in user
+            localStorage.setItem('loggedInUser', JSON.stringify(userData));
+            
+            // Track registration event
+            const eventData = {
+                event: 'sign_up',
+                method: 'email',
+                user_data: {
+                    first_name: userData.firstName,
+                    last_name: userData.lastName,
+                    email: userData.email
+                }
+            };
+            
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(eventData);
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'sign_up', eventData);
+            }
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                loading.style.display = 'none';
+                form.style.display = 'none';
+                
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                
+                // Set registration flag for index.html
+                localStorage.setItem('justRegistered', 'true');
+                
+                // Redirect to index.html after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+                
+            }, 1500);
+        }
+
+        // Phone number formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.startsWith('994')) {
+                value = value.substring(3);
+            }
+            
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = `+994 ${value}`;
+                } else if (value.length <= 5) {
+                    value = `+994 ${value.substring(0, 2)} ${value.substring(2)}`;
+                } else if (value.length <= 7) {
+                    value = `+994 ${value.substring(0, 2)} ${value.substring(2, 5)} ${value.substring(5)}`;
+                } else {
+                    value = `+994 ${value.substring(0, 2)} ${value.substring(2, 5)} ${value.substring(5, 7)} ${value.substring(7, 9)}`;
+                }
+            }
+            
+            e.target.value = value;
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            const eventData = {
+                event: 'page_view',
+                page_title: 'Ofisait.az - Qeydiyyat',
+                page_location: window.location.href
+            };
+            
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(eventData);
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', eventData);
+            }
+        });
+    </script>
+</body>
+</html>
