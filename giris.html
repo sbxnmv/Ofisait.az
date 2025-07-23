@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofisait.az - Giriş Yap</title>
+    <title>Ofisait.az - Daxil Ol</title>
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -149,14 +149,14 @@
                 
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <input type="text" id="searchInput" placeholder="Məhsul axtar..." class="search-input">
                     <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
                 
                 <div class="user-actions">
-                    <a href="giris.html" class="user-btn active">👤 Giriş Yap</a>
-                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
-                    <a href="favoriler.html" class="user-btn">❤️ Favoriler</a>
+                    <a href="giris.html" class="user-btn active">👤 Daxil Ol</a>
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn">❤️ Sevimlilər</a>
                     <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
                 </div>
             </div>
@@ -167,14 +167,14 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="index.html">🏠 Ana Səhifə</a>
                 <a href="telefonlar.html">📱 Telefonlar</a>
-                <a href="televizyonlar.html">📺 Televizyonlar</a>
-                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="televizyonlar.html">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
                 <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
-                <a href="kampanyalar.html">🔥 Kampanyalar</a>
-                <a href="destek.html">💬 Destek</a>
-                <a href="iletisim.html">📞 İletişim</a>
+                <a href="kampanyalar.html">🔥 Kampaniyalar</a>
+                <a href="destek.html">💬 Dəstək</a>
+                <a href="iletisim.html">📞 Əlaqə</a>
             </div>
         </div>
     </nav>
@@ -182,71 +182,71 @@
     <!-- Cart Widget -->
     <a href="sepet.html" class="cart-widget">
         <div class="cart-count">🛒 <span id="cartCount">0</span></div>
-        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+        <div style="font-size: 12px;">₼<span id="cartTotal">0</span></div>
     </a>
 
     <div class="container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="index.html">Ana Sayfa</a> > <span>Giriş Yap</span>
+            <a href="index.html">Ana Səhifə</a> > <span>Daxil Ol</span>
         </div>
         
         <!-- Main Content -->
         <div class="main-container">
             <div class="login-container fade-in">
                 <div class="login-header">
-                    <h1 class="login-title">Hoş Geldiniz! 👋</h1>
-                    <p class="login-subtitle">Hesabınıza giriş yapın ve alışverişe başlayın</p>
+                    <h1 class="login-title">Xoş Gəlmisiniz! 👋</h1>
+                    <p class="login-subtitle">Hesabınıza daxil olun və alış-verişə başlayın</p>
                 </div>
                 
                 <form id="loginForm" novalidate>
                     <div class="form-group">
-                        <label for="email" class="form-label">📧 E-posta Adresi</label>
+                        <label for="email" class="form-label">📧 E-poçt Ünvanı</label>
                         <input type="email" id="email" name="email" class="form-input" placeholder="ornek@email.com" required>
-                        <div class="error-message" id="emailError">Geçerli bir e-posta adresi giriniz.</div>
+                        <div class="error-message" id="emailError">Düzgün e-poçt ünvanı daxil edin.</div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="password" class="form-label">🔒 Şifre</label>
+                        <label for="password" class="form-label">🔒 Şifrə</label>
                         <div class="password-container">
-                            <input type="password" id="password" name="password" class="form-input" placeholder="Şifrenizi giriniz" required>
+                            <input type="password" id="password" name="password" class="form-input" placeholder="Şifrənizi daxil edin" required>
                             <span class="password-toggle" onclick="togglePassword()">👁️</span>
                         </div>
-                        <div class="error-message" id="passwordError">Şifre en az 6 karakter olmalıdır.</div>
+                        <div class="error-message" id="passwordError">Şifrə ən azı 6 simvol olmalıdır.</div>
                     </div>
                     
                     <div class="form-options">
                         <div class="remember-me">
                             <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Beni hatırla</label>
+                            <label for="remember">Məni xatırla</label>
                         </div>
-                        <a href="sifremi-unuttum.html" class="forgot-password">Şifremi unuttum</a>
+                        <a href="sifremi-unuttum.html" class="forgot-password">Şifrəmi unutdum</a>
                     </div>
                     
                     <button type="submit" class="login-btn" id="loginBtn">
                         <span class="loading">
                             <span class="spinner"></span>
-                            Giriş yapılıyor...
+                            Daxil olunur...
                         </span>
-                        <span class="btn-text">Giriş Yap</span>
+                        <span class="btn-text">Daxil Ol</span>
                     </button>
                 </form>
                 
                 <div class="divider">
-                    <span>veya</span>
+                    <span>və ya</span>
                 </div>
                 
                 <div class="social-login">
                     <a href="#" class="social-btn google" onclick="loginWithGoogle()">
-                        🔍 Google ile Giriş
+                        🔍 Google ilə Daxil Ol
                     </a>
                     <a href="#" class="social-btn facebook" onclick="loginWithFacebook()">
-                        📘 Facebook ile Giriş
+                        📘 Facebook ilə Daxil Ol
                     </a>
                 </div>
                 
                 <div class="signup-link">
-                    Hesabınız yok mu? <a href="kayit.html">Hemen kayıt olun</a>
+                    Hesabınız yoxdur? <a href="kayit.html">İndi qeydiyyatdan keçin</a>
                 </div>
             </div>
         </div>
@@ -319,12 +319,12 @@
             // Email validation
             if (!email.value.trim()) {
                 email.classList.add('error');
-                emailError.textContent = 'E-posta adresi gereklidir.';
+                emailError.textContent = 'E-poçt ünvanı tələb olunur.';
                 emailError.style.display = 'block';
                 isValid = false;
             } else if (!validateEmail(email.value)) {
                 email.classList.add('error');
-                emailError.textContent = 'Geçerli bir e-posta adresi giriniz.';
+                emailError.textContent = 'Düzgün e-poçt ünvanı daxil edin.';
                 emailError.style.display = 'block';
                 isValid = false;
             } else {
@@ -334,12 +334,12 @@
             // Password validation
             if (!password.value.trim()) {
                 password.classList.add('error');
-                passwordError.textContent = 'Şifre gereklidir.';
+                passwordError.textContent = 'Şifrə tələb olunur.';
                 passwordError.style.display = 'block';
                 isValid = false;
             } else if (password.value.length < 6) {
                 password.classList.add('error');
-                passwordError.textContent = 'Şifre en az 6 karakter olmalıdır.';
+                passwordError.textContent = 'Şifrə ən azı 6 simvol olmalıdır.';
                 passwordError.style.display = 'block';
                 isValid = false;
             } else {
@@ -395,7 +395,7 @@
                 }
                 
                 // Show success message
-                showNotification('Giriş başarılı! Yönlendiriliyorsunuz... ✅', 'success');
+                showNotification('Daxil olma uğurludur! Yönləndirilirsiniz... ✅', 'success');
                 
                 // Redirect after success
                 setTimeout(() => {
@@ -415,7 +415,7 @@
             dataLayer.push(eventData);
             gtag('event', 'login', eventData);
             
-            showNotification('Google girişi geliştirme aşamasında... 🚧', 'info');
+            showNotification('Google girişi hazırlanma mərhələsindədir... 🚧', 'info');
         }
 
         function loginWithFacebook() {
@@ -426,7 +426,7 @@
             dataLayer.push(eventData);
             gtag('event', 'login', eventData);
             
-            showNotification('Facebook girişi geliştirme aşamasında... 🚧', 'info');
+            showNotification('Facebook girişi hazırlanma mərhələsindədir... 🚧', 'info');
         }
 
         // Update Cart Display
@@ -492,7 +492,7 @@
             const userSession = localStorage.getItem('userSession') || sessionStorage.getItem('userSession');
             if (userSession) {
                 const returnUrl = new URLSearchParams(window.location.search).get('return') || 'hesabim.html';
-                showNotification('Zaten giriş yapmışsınız! Yönlendiriliyorsunuz...', 'info');
+                showNotification('Artıq daxil olmuşsunuz! Yönləndirilirsiniz...', 'info');
                 setTimeout(() => {
                     window.location.href = returnUrl;
                 }, 2000);
@@ -502,7 +502,7 @@
             // Track page view
             const eventData = {
                 event: 'page_view',
-                page_title: 'Ofisait.az - Giriş Yap',
+                page_title: 'Ofisait.az - Daxil Ol',
                 page_location: window.location.href
             };
             dataLayer.push(eventData);
