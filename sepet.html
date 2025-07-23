@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sepetim - Ofisait.az</title>
+    <title>Səbətim - Ofisait.az</title>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,7 +82,7 @@
             <div class="header-content">
                 <a href="index.html" class="logo">🏢 Ofisait.az</a>
                 <div>
-                    <a href="index.html" style="color: white; text-decoration: none; padding: 8px 15px;">← Ana Sayfaya Dön</a>
+                    <a href="index.html" style="color: white; text-decoration: none; padding: 8px 15px;">← Əsas Səhifəyə Qayıt</a>
                 </div>
             </div>
         </div>
@@ -92,9 +92,9 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html">🏠 Ana Sayfa</a>
-                <a href="sepet.html" class="active">🛒 Sepetim</a>
-                <a href="favoriler.html">❤️ Favoriler</a>
+                <a href="index.html">🏠 Əsas Səhifə</a>
+                <a href="sepet.html" class="active">🛒 Səbətim</a>
+                <a href="favoriler.html">❤️ Seçilmişlər</a>
                 <a href="hesabim.html">⚙️ Hesabım</a>
             </div>
         </div>
@@ -102,7 +102,7 @@
 
     <div class="container">
         <div class="cart-container">
-            <h1 class="cart-title">🛒 Sepetim</h1>
+            <h1 class="cart-title">🛒 Səbətim</h1>
             
             <div id="cartContent">
                 <!-- Cart items will be loaded here -->
@@ -111,22 +111,22 @@
     </div>
 
     <script>
-        // Ana sayfadaki ürün veritabanını burada da tanımlamamız gerekiyor
+        // Əsas səhifədəki məhsul məlumat bazasını burada da təyin etməliyik
         const products = {
             featured: [
-                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa' },
+                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanium Korpus' },
                 { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera' },
                 { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR' },
-                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB' },
-                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme' },
+                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Çip, 512GB' },
+                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktiv Səs-küy Azaltma' },
                 { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD' }
             ]
         };
 
-        // localStorage'dan sepet verilerini al
+        // localStorage-dan səbət məlumatlarını al
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-        // Ürün bulma fonksiyonu
+        // Məhsul axtarış funksiyası
         function findProduct(productId) {
             for (let category in products) {
                 const product = products[category].find(p => p.id === productId);
@@ -135,13 +135,13 @@
             return null;
         }
 
-        // Sepeti güncelleme
+        // Səbəti yenilə
         function updateCart() {
             localStorage.setItem('cart', JSON.stringify(cart));
             loadCart();
         }
 
-        // Ürün miktarını artır
+        // Məhsul miqdarını artır
         function increaseQuantity(productId) {
             if (cart[productId]) {
                 cart[productId].quantity++;
@@ -149,7 +149,7 @@
             }
         }
 
-        // Ürün miktarını azalt
+        // Məhsul miqdarını azalt
         function decreaseQuantity(productId) {
             if (cart[productId] && cart[productId].quantity > 1) {
                 cart[productId].quantity--;
@@ -157,15 +157,15 @@
             }
         }
 
-        // Ürünü sepetten çıkar
+        // Məhsulu səbətdən çıxart
         function removeFromCart(productId) {
-            if (confirm('Bu ürünü sepetten çıkarmak istediğinizden emin misiniz?')) {
+            if (confirm('Bu məhsulu səbətdən çıxarmaq istədiyinizdən əminsiniz?')) {
                 delete cart[productId];
                 updateCart();
             }
         }
 
-        // Miktar manuel değiştirme
+        // Miqdarı əl ilə dəyişdir
         function changeQuantity(productId, newQuantity) {
             const quantity = parseInt(newQuantity);
             if (quantity > 0 && cart[productId]) {
@@ -176,28 +176,28 @@
             }
         }
 
-        // Sepeti yükle ve görüntüle
+        // Səbəti yüklə və göstər
         function loadCart() {
             const cartContent = document.getElementById('cartContent');
             
-            // Sepet boş mu kontrol et
+            // Səbət boşdur mu yoxla
             if (Object.keys(cart).length === 0) {
                 cartContent.innerHTML = `
                     <div class="empty-cart">
                         <div class="empty-cart-icon">🛒</div>
-                        <h2>Sepetiniz Boş</h2>
-                        <p>Henüz sepetinize ürün eklemediniz. Alışverişe başlamak için ana sayfaya dönebilirsiniz.</p>
-                        <a href="index.html" class="checkout-btn" style="display: inline-block; text-decoration: none; width: auto; padding: 15px 30px;">Alışverişe Başla</a>
+                        <h2>Səbətiniz Boşdur</h2>
+                        <p>Hələ səbətinizə məhsul əlavə etməmisiniz. Alış-verişə başlamaq üçün əsas səhifəyə qayıda bilərsiniz.</p>
+                        <a href="index.html" class="checkout-btn" style="display: inline-block; text-decoration: none; width: auto; padding: 15px 30px;">Alış-verişə Başla</a>
                     </div>
                 `;
                 return;
             }
 
-            // Toplam hesaplama
+            // Cəm hesablama
             let subtotal = 0;
             let itemCount = 0;
 
-            // Sepet içeriğini oluştur
+            // Səbət məzmununu yarat
             let cartHTML = '<div class="cart-content"><div class="cart-items">';
             
             for (const [productId, cartItem] of Object.entries(cart)) {
@@ -211,7 +211,7 @@
                         <div class="item-details">
                             <h3>${cartItem.name}</h3>
                             <div class="item-features">${cartItem.features}</div>
-                            <div class="item-price">₺${cartItem.price.toLocaleString()}</div>
+                            <div class="item-price">₼${cartItem.price.toLocaleString()}</div>
                         </div>
                         <div class="quantity-controls">
                             <button class="quantity-btn" onclick="decreaseQuantity('${productId}')">-</button>
@@ -219,7 +219,7 @@
                                    onchange="changeQuantity('${productId}', this.value)" min="1">
                             <button class="quantity-btn" onclick="increaseQuantity('${productId}')">+</button>
                         </div>
-                        <div class="item-total">₺${itemTotal.toLocaleString()}</div>
+                        <div class="item-total">₼${itemTotal.toLocaleString()}</div>
                         <button class="remove-btn" onclick="removeFromCart('${productId}')">🗑️</button>
                     </div>
                 `;
@@ -227,42 +227,42 @@
 
             cartHTML += '</div>';
 
-            // Sepet özeti
+            // Səbət xülasəsi
             const shipping = subtotal > 500 ? 0 : 29.90;
             const total = subtotal + shipping;
 
             cartHTML += `
                 <div class="cart-summary">
-                    <h3 class="summary-title">Sipariş Özeti</h3>
+                    <h3 class="summary-title">Sifariş Xülasəsi</h3>
                     <div class="summary-row">
-                        <span>Ürün Sayısı:</span>
-                        <span>${itemCount} Adet</span>
+                        <span>Məhsul Sayı:</span>
+                        <span>${itemCount} Ədəd</span>
                     </div>
                     <div class="summary-row">
-                        <span>Ara Toplam:</span>
-                        <span>₺${subtotal.toLocaleString()}</span>
+                        <span>Ara Cəm:</span>
+                        <span>₼${subtotal.toLocaleString()}</span>
                     </div>
                     <div class="summary-row">
-                        <span>Kargo:</span>
-                        <span>${shipping === 0 ? 'ÜCRETSİZ' : '₺' + shipping}</span>
+                        <span>Çatdırılma:</span>
+                        <span>${shipping === 0 ? 'PULSUZ' : '₼' + shipping}</span>
                     </div>
                     <div class="summary-row total">
-                        <span>Toplam:</span>
-                        <span>₺${total.toLocaleString()}</span>
+                        <span>Cəmi:</span>
+                        <span>₼${total.toLocaleString()}</span>
                     </div>
-                    <button class="checkout-btn" onclick="proceedToCheckout()">Sipariş Ver 🚀</button>
-                    <a href="index.html" class="continue-shopping">← Alışverişe Devam Et</a>
+                    <button class="checkout-btn" onclick="proceedToCheckout()">Sifariş Ver 🚀</button>
+                    <a href="index.html" class="continue-shopping">← Alış-verişə Davam Et</a>
                 </div>
             </div>`;
 
             cartContent.innerHTML = cartHTML;
         }
 
-        // Ödeme sayfasına git
+        // Ödəniş səhifəsinə keç
         function proceedToCheckout() {
-            // Sepet verilerini kontrol et
+            // Səbət məlumatlarını yoxla
             if (Object.keys(cart).length === 0) {
-                alert('Sepetinizde ürün bulunmuyor!');
+                alert('Səbətinizdə məhsul yoxdur!');
                 return;
             }
 
@@ -270,7 +270,7 @@
             const items = Object.entries(cart).map(([id, item]) => ({
                 item_id: id,
                 item_name: item.name,
-                currency: 'TRY',
+                currency: 'AZN',
                 price: item.price,
                 quantity: item.quantity,
                 item_category: item.category,
@@ -280,30 +280,30 @@
             // Begin checkout event
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'begin_checkout', {
-                    currency: 'TRY',
+                    currency: 'AZN',
                     value: items.reduce((total, item) => total + (item.price * item.quantity), 0),
                     items: items
                 });
             }
 
-            // Ödeme sayfasına yönlendir
+            // Ödəniş səhifəsinə yönləndir
             window.location.href = 'odeme.html';
         }
 
-        // Sayfa yüklendiğinde sepeti görüntüle
+        // Səhifə yükləndikdə səbəti göstər
         document.addEventListener('DOMContentLoaded', function() {
             loadCart();
             
-            // Sayfa görüntüleme eventi
+            // Səhifə baxış eventi
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'page_view', {
-                    page_title: 'Sepetim - Ofisait.az',
+                    page_title: 'Səbətim - Ofisait.az',
                     page_location: window.location.href
                 });
             }
         });
 
-        // Bildirim gösterme fonksiyonu
+        // Bildiriş göstərmə funksiyası
         function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
             const bgColor = type === 'success' ? '#27ae60' : '#e74c3c';
@@ -321,7 +321,7 @@
             }, 3000);
         }
 
-        // CSS animasyonları
+        // CSS animasiyaları
         const style = document.createElement('style');
         style.textContent = `
             @keyframes slideInRight {
