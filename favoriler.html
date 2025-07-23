@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorilerim - Ofisait.az</title>
+    <title>Sevimlilərim - Ofisait.az</title>
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -176,14 +176,14 @@
                 
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+                    <input type="text" id="searchInput" placeholder="Məhsul axtar..." class="search-input">
                     <button class="search-btn" onclick="performSearch()">🔍</button>
                 </div>
                 
                 <div class="user-actions">
-                    <a href="giris.html" class="user-btn">👤 Giriş Yap</a>
-                    <a href="kayit.html" class="user-btn">📝 Kayıt Ol</a>
-                    <a href="favoriler.html" class="user-btn active">❤️ Favoriler</a>
+                    <a href="giris.html" class="user-btn">👤 Giriş Et</a>
+                    <a href="kayit.html" class="user-btn">📝 Qeydiyyat</a>
+                    <a href="favoriler.html" class="user-btn active">❤️ Sevimlilər</a>
                     <a href="hesabim.html" class="user-btn">⚙️ Hesabım</a>
                 </div>
             </div>
@@ -194,14 +194,14 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html">🏠 Ana Sayfa</a>
+                <a href="index.html">🏠 Ana Səhifə</a>
                 <a href="telefonlar.html">📱 Telefonlar</a>
-                <a href="televizyonlar.html">📺 Televizyonlar</a>
-                <a href="bilgisayarlar.html">💻 Bilgisayarlar</a>
+                <a href="televizyonlar.html">📺 Televizorlar</a>
+                <a href="bilgisayarlar.html">💻 Kompüterlər</a>
                 <a href="aksesuarlar.html">🎧 Aksesuarlar</a>
-                <a href="kampanyalar.html">🔥 Kampanyalar</a>
-                <a href="destek.html">💬 Destek</a>
-                <a href="iletisim.html">📞 İletişim</a>
+                <a href="kampanyalar.html">🔥 Kampaniyalar</a>
+                <a href="destek.html">💬 Dəstək</a>
+                <a href="iletisim.html">📞 Əlaqə</a>
             </div>
         </div>
     </nav>
@@ -209,55 +209,55 @@
     <!-- Cart Widget -->
     <a href="sepet.html" class="cart-widget">
         <div class="cart-count">🛒 <span id="cartCount">0</span></div>
-        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+        <div style="font-size: 12px;">₼<span id="cartTotal">0</span></div>
     </a>
 
     <div class="container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="index.html">Ana Sayfa</a> > <span>Favorilerim</span>
+            <a href="index.html">Ana Səhifə</a> > <span>Sevimlilərim</span>
         </div>
         
         <!-- Wishlist Container -->
         <div class="wishlist-container fade-in">
             <div class="wishlist-header">
-                <h1>❤️ Favorilerim</h1>
+                <h1>❤️ Sevimlilərim</h1>
                 <div class="wishlist-stats">
                     <div class="stat-item">
                         <span class="stat-number" id="totalItems">0</span>
-                        <span class="stat-label">Toplam Ürün</span>
+                        <span class="stat-label">Cəmi Məhsul</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number" id="availableItems">0</span>
-                        <span class="stat-label">Stokta Var</span>
+                        <span class="stat-label">Stokda Var</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">₺<span id="totalValue">0</span></span>
-                        <span class="stat-label">Toplam Değer</span>
+                        <span class="stat-number">₼<span id="totalValue">0</span></span>
+                        <span class="stat-label">Cəmi Dəyər</span>
                     </div>
                 </div>
             </div>
             
             <div class="wishlist-actions">
                 <button class="action-btn btn-clear" onclick="clearWishlist()">
-                    🗑️ Tümünü Temizle
+                    🗑️ Hamısını Təmizlə
                 </button>
                 <button class="action-btn btn-share" onclick="shareWishlist()">
                     📤 Paylaş
                 </button>
                 <button class="action-btn btn-sort" onclick="toggleSort()">
-                    🔄 Sırala: <span id="sortType">Yeni Eklenen</span>
+                    🔄 Sırala: <span id="sortType">Yeni Əlavə Olunan</span>
                 </button>
             </div>
             
             <!-- Empty Wishlist -->
             <div id="emptyWishlist" class="empty-wishlist" style="display: none;">
                 <div class="empty-icon">💔</div>
-                <div class="empty-message">Henüz favori ürününüz bulunmuyor</div>
-                <p style="color: #95a5a6; margin-bottom: 30px;">Beğendiğiniz ürünleri favorilere ekleyerek daha sonra kolayca bulabilirsiniz.</p>
+                <div class="empty-message">Hələ sevimli məhsulunuz yoxdur</div>
+                <p style="color: #95a5a6; margin-bottom: 30px;">Bəyəndiyiniz məhsulları sevimlilərə əlavə edərək sonradan asanlıqla tapa bilərsiniz.</p>
                 <div class="empty-actions">
-                    <a href="index.html" class="btn-primary">🏠 Ana Sayfaya Dön</a>
-                    <a href="kampanyalar.html" class="btn-primary">🔥 Kampanyaları İncele</a>
+                    <a href="index.html" class="btn-primary">🏠 Ana Səhifəyə Qayıt</a>
+                    <a href="kampanyalar.html" class="btn-primary">🔥 Kampaniyalara Bax</a>
                 </div>
             </div>
             
@@ -278,11 +278,11 @@
         
         // Sample Products Data (same as in main site)
         const products = {
-            'iphone15pro': { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, oldPrice: 49999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa', availability: 'available' },
+            'iphone15pro': { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, oldPrice: 49999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanium Qutu', availability: 'available' },
             'samsungs24': { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera', availability: 'available' },
             'lgtv55': { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR', availability: 'limited' },
-            'macbookpro': { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB', availability: 'unavailable' },
-            'airpods': { id: 'airpods', name: 'AirPods Pro 2', price: 8999, oldPrice: 9999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme', availability: 'available' },
+            'macbookpro': { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Çip, 512GB', availability: 'unavailable' },
+            'airpods': { id: 'airpods', name: 'AirPods Pro 2', price: 8999, oldPrice: 9999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktiv Səs-küy Azaltma', availability: 'available' },
             'ps5': { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD', availability: 'available' }
         };
 
@@ -328,7 +328,7 @@
             wishlistItems = sortWishlistItems(wishlistItems);
             
             grid.innerHTML = wishlistItems.map(item => {
-                const addedDate = new Date(item.addedDate).toLocaleDateString('tr-TR');
+                const addedDate = new Date(item.addedDate).toLocaleDateString('az-AZ');
                 const discount = item.oldPrice ? Math.round((1 - item.price / item.oldPrice) * 100) : 0;
                 const availabilityInfo = getAvailabilityInfo(item.availability);
                 
@@ -344,19 +344,19 @@
                         <div class="wishlist-item-info">
                             <div class="item-title" onclick="viewProduct('${item.id}')">${item.name}</div>
                             <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                                <div class="item-price">₺${item.price.toLocaleString()}</div>
+                                <div class="item-price">₼${item.price.toLocaleString()}</div>
                                 ${item.oldPrice ? `
-                                    <span class="item-old-price">₺${item.oldPrice.toLocaleString()}</span>
+                                    <span class="item-old-price">₼${item.oldPrice.toLocaleString()}</span>
                                     <span class="item-discount">-%${discount}</span>
                                 ` : ''}
                             </div>
                             <div class="item-features">${item.features}</div>
-                            <div class="item-added-date">📅 ${addedDate} tarihinde eklendi</div>
+                            <div class="item-added-date">📅 ${addedDate} tarixində əlavə edildi</div>
                             <div class="item-actions">
                                 <button class="btn btn-cart" 
                                         onclick="addToCart('${item.id}')"
                                         ${item.availability === 'unavailable' ? 'disabled' : ''}>
-                                    ${item.availability === 'unavailable' ? '❌ Stokta Yok' : '🛒 Sepete Ekle'}
+                                    ${item.availability === 'unavailable' ? '❌ Stokda Yoxdur' : '🛒 Səbətə Əlavə Et'}
                                 </button>
                                 <button class="btn btn-compare" onclick="addToCompare('${item.id}')">⚖️</button>
                                 <button class="btn btn-view" onclick="viewProduct('${item.id}')">👁️</button>
@@ -373,13 +373,13 @@
         function getAvailabilityInfo(availability) {
             switch (availability) {
                 case 'available':
-                    return { text: '✅ Stokta', class: 'available' };
+                    return { text: '✅ Stokda', class: 'available' };
                 case 'limited':
-                    return { text: '⚠️ Sınırlı', class: 'limited' };
+                    return { text: '⚠️ Məhdud', class: 'limited' };
                 case 'unavailable':
-                    return { text: '❌ Tükendi', class: 'unavailable' };
+                    return { text: '❌ Bitdi', class: 'unavailable' };
                 default:
-                    return { text: '✅ Stokta', class: 'available' };
+                    return { text: '✅ Stokda', class: 'available' };
             }
         }
 
@@ -395,7 +395,7 @@
                 case 'price-low':
                     return items.sort((a, b) => a.price - b.price);
                 case 'name':
-                    return items.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+                    return items.sort((a, b) => a.name.localeCompare(b.name, 'az'));
                 default:
                     return items;
             }
@@ -404,11 +404,11 @@
         // Toggle Sort
         function toggleSort() {
             const sortTypes = {
-                'newest': { next: 'oldest', label: 'Eski Eklenen' },
-                'oldest': { next: 'price-high', label: 'Fiyat (Yüksek)' },
-                'price-high': { next: 'price-low', label: 'Fiyat (Düşük)' },
-                'price-low': { next: 'name', label: 'İsme Göre' },
-                'name': { next: 'newest', label: 'Yeni Eklenen' }
+                'newest': { next: 'oldest', label: 'Köhnə Əlavə Olunan' },
+                'oldest': { next: 'price-high', label: 'Qiymət (Yüksək)' },
+                'price-high': { next: 'price-low', label: 'Qiymət (Aşağı)' },
+                'price-low': { next: 'name', label: 'Adına Görə' },
+                'name': { next: 'newest', label: 'Yeni Əlavə Olunan' }
             };
             
             sortType = sortTypes[sortType].next;
@@ -457,12 +457,12 @@
                     // Track removal
                     const eventData = {
                         event: 'remove_from_wishlist',
-                        currency: 'TRY',
+                        currency: 'AZN',
                         value: product.price,
                         items: [{
                             item_id: productId,
                             item_name: product.name,
-                            currency: 'TRY',
+                            currency: 'AZN',
                             price: product.price
                         }]
                     };
@@ -470,7 +470,7 @@
                     gtag('event', 'remove_from_wishlist', eventData);
                     
                     loadWishlist();
-                    showToast(`${product.name} favorilerden kaldırıldı! 💔`);
+                    showToast(`${product.name} sevimlilərdən silindi! 💔`);
                 }, 300);
             }
         }
@@ -478,11 +478,6 @@
         // Clear Wishlist
         function clearWishlist() {
             if (wishlist.length === 0) {
-                showToast('Favori listeniz zaten boş! 🤷‍♂️', 'warning');
+                showToast('Sevimli siyahınız artıq boşdur! 🤷‍♂️', 'warning');
                 return;
             }
-            
-            if (confirm(`Tüm favori ürünlerinizi (${wishlist.length} adet) kaldırmak istediğinizden emin misiniz?`)) {
-                // Track clear event
-                const eventData = {
-                    event:
