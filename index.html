@@ -188,7 +188,7 @@
     <!-- Cart Widget -->
     <a href="sepet.html" class="cart-widget">
         <div class="cart-count">🛒 <span id="cartCount">0</span></div>
-        <div style="font-size: 12px;">₺<span id="cartTotal">0</span></div>
+        <div style="font-size: 12px;">₼<span id="cartTotal">0</span></div>
     </a>
 
     <div class="container">
@@ -298,7 +298,7 @@
 
     <script>
         // Global Variables
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+        let cart = {};
         
         // DataLayer initialization
         window.dataLayer = window.dataLayer || [];
@@ -307,12 +307,12 @@
         // Sample Products Data
         const products = {
             featured: [
-                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa' },
-                { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera' },
-                { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR' },
-                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB' },
-                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme' },
-                { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD' }
+                { id: 'iphone15pro', name: 'iPhone 15 Pro', price: 45999, category: 'phones', brand: 'apple', image: '📱', features: '128GB, Titanyum Kasa', availability: 'available' },
+                { id: 'samsungs24', name: 'Samsung Galaxy S24', price: 35999, category: 'phones', brand: 'samsung', image: '📱', features: '256GB, AI Kamera', availability: 'available' },
+                { id: 'lgtv55', name: 'LG OLED 55"', price: 65999, category: 'televisions', brand: 'lg', image: '📺', features: '4K, Smart TV, HDR', availability: 'limited' },
+                { id: 'macbookpro', name: 'MacBook Pro 14"', price: 89999, category: 'computers', brand: 'apple', image: '💻', features: 'M3 Pro Chip, 512GB', availability: 'unavailable' },
+                { id: 'airpods', name: 'AirPods Pro 2', price: 8999, category: 'accessories', brand: 'apple', image: '🎧', features: 'Aktif Gürültü Önleme', availability: 'available' },
+                { id: 'ps5', name: 'PlayStation 5', price: 25999, category: 'gaming', brand: 'sony', image: '🎮', features: 'Ultra HD, SSD', availability: 'available' }
             ]
         };
 
@@ -350,7 +350,7 @@
                     <div class="product-image">${product.image}</div>
                     <div class="product-info">
                         <div class="product-title">${product.name}</div>
-                        <div class="product-price">₺${product.price.toLocaleString()}</div>
+                        <div class="product-price">₼${product.price.toLocaleString()}</div>
                         <div class="product-features">${product.features}</div>
                         <div class="product-actions">
                             <button class="btn btn-primary" onclick="event.stopPropagation(); addToCart('${product.id}')">Səbətə Əlavə Et</button>
@@ -366,6 +366,9 @@
             const product = findProduct(productId);
             if (!product) return;
             
+            // localStorage'dan mevcut cart'ı al
+            cart = JSON.parse(localStorage.getItem('cart')) || {};
+            
             if (!cart[productId]) {
                 cart[productId] = { ...product, quantity: 0 };
             }
@@ -375,12 +378,12 @@
             
             const eventData = {
                 event: 'add_to_cart',
-                currency: 'TRY',
+                currency: 'AZN',
                 value: product.price,
                 items: [{
                     item_id: productId,
                     item_name: product.name,
-                    currency: 'TRY',
+                    currency: 'AZN',
                     price: product.price,
                     quantity: 1,
                     item_category: product.category,
@@ -402,12 +405,12 @@
             
             const eventData = {
                 event: 'view_item',
-                currency: 'TRY',
+                currency: 'AZN',
                 value: product.price,
                 items: [{
                     item_id: productId,
                     item_name: product.name,
-                    currency: 'TRY',
+                    currency: 'AZN',
                     price: product.price,
                     quantity: 1,
                     item_category: product.category,
@@ -422,24 +425,36 @@
             window.location.href = `urun/${productId}.html`;
         }
 
-        // Add to Wishlist
+        // Add to Wishlist - DÜZELTİLMİŞ VERSİYON
         function addToWishlist(productId) {
             const product = findProduct(productId);
             if (!product) return;
             
+            // localStorage'dan mevcut wishlist'i al
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            let wishlistData = JSON.parse(localStorage.getItem('wishlistData')) || {};
+            
             if (!wishlist.includes(productId)) {
+                // Ürünü wishlist'e ekle
                 wishlist.push(productId);
+                
+                // Ürün detay bilgilerini wishlistData'ya ekle
+                wishlistData[productId] = {
+                    addedDate: new Date().toISOString()
+                };
+                
+                // localStorage'a kaydet
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                localStorage.setItem('wishlistData', JSON.stringify(wishlistData));
                 
                 const eventData = {
                     event: 'add_to_wishlist',
-                    currency: 'TRY',
+                    currency: 'AZN',
                     value: product.price,
                     items: [{
                         item_id: productId,
                         item_name: product.name,
-                        currency: 'TRY',
+                        currency: 'AZN',
                         price: product.price
                     }]
                 };
@@ -464,6 +479,9 @@
 
         // Update Cart Display
         function updateCartDisplay() {
+            // localStorage'dan cart'ı al
+            cart = JSON.parse(localStorage.getItem('cart')) || {};
+            
             let itemCount = 0;
             let total = 0;
             
